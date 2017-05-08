@@ -23,7 +23,7 @@ class App extends Component {
     //console.log('app props',this.props)
     return (
       <div>
-        <div class="page-header">
+        <div className="page-header">
           <h1>React Google Map <small>with redux</small></h1>
         </div>
         <div style={{width:'50%',float:'left'}}>
