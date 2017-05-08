@@ -59,6 +59,7 @@ class Map extends Component{
     }
   }
   render() {
+      console.log('rendered');
     return (
       <div>
         <GoogleMapWrapper

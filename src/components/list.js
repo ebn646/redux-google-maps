@@ -28,7 +28,7 @@ class List extends Component{
   }
   render(){
     return(
-      <ul className="col-md-4 list-group" style={{width:"100%"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+      <ul className="col-md-4 list-group" style={{width:"100%",height:"600px", overflowY:"scroll"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
     )
   }
 }

@@ -7,13 +7,13 @@ export default class ListItem extends Component{
   }
 
   componentWillReceiveProps(nextProps){
+    //console.log('componentWillUpdate')
     var css = (this.state.isSelected === "") ? "selected" : "";
-    console.log('fuck')
     if(nextProps.activeMarker.props.index == this.props.index){
-      console.log('props changed=',nextProps.activeMarker.props.index ,',', this.props.index)
+      //console.log('props changed=',nextProps.activeMarker.props.index ,',', this.props.index)
       this.setState({"isSelected":css});
       return true;
-    }else if(nextProps.activeMarker.props.index != this.props.index){
+    }else if(this.state.isSelected == "selected"){
       this.setState({"isSelected":""});
       return true;
     }else{
@@ -21,7 +21,14 @@ export default class ListItem extends Component{
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log('shouldComponentUpdate');
+    return nextState.isSelected !== this.state.isSelected;
+  }
+
+
   render(){
+    //console.log('list item rendering')
     const style = {
       cursor:'pointer',
       listStyleType:'none',

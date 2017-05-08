@@ -10,7 +10,7 @@ class GoogleMarker extends Component{
   componentWillReceiveProps(nextProps){
     //console.log('nexProps ',nextProps.activeMarker.props.index , this.props.index);
     if(nextProps.activeMarker.props.index == this.props.index){
-      console.log('am=',nextProps.activeMarker.props.index ,',', this.props.index)
+      //console.log('am=',nextProps.activeMarker.props.index ,',', this.props.index)
       this.setState({showInfo:true})
       return true;
     }else if(nextProps.activeMarker.props.index != this.props.index){
@@ -42,7 +42,7 @@ class GoogleMarker extends Component{
         {this.state.showInfo && (
           <InfoWindow
             {...this.props}
-            onCloseClick={() => props.onMarkerClose()}>
+            onCloseClick={() => this.props.onMarkerClose()}>
             <div>{this.props.venues[this.props.index].name}{this.props.venues[this.props.index].location.address}</div>
           </InfoWindow>
         )}

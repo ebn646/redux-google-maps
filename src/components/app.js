@@ -22,7 +22,10 @@ class App extends Component {
   render() {
     //console.log('app props',this.props)
     return (
-      <div ref="map">
+      <div>
+        <div class="page-header">
+          <h1>React Google Map <small>with redux</small></h1>
+        </div>
         <div style={{width:'50%',float:'left'}}>
         <Map
           {...this.props}
