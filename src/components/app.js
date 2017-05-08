@@ -15,15 +15,12 @@ class App extends Component {
       },
     }
   }
-  onListChanged(newState){
-    console.log('list has changed', newState)
-  }
   componentWillMount(){
     this.props.onFetchMarkers();
     this.props.onFetchLocations();
   }
   render() {
-    console.log('app props',this.props)
+    //console.log('app props',this.props)
     return (
       <div ref="map">
         <div style={{width:'50%',float:'left'}}>

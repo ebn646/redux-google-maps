@@ -16,19 +16,19 @@ class List extends Component{
   handleMarkerClick(marker){
     this.props.onMarkerClicked(marker);
   }
-  renderItem(venue){
+  renderItem(venue,index){
       return(
         <ListItem
         {...this.props}
-        key={venue.id}
-        index={venue.id}
+        key={index}
+        index={index}
         onMarkerClick={this.handleMarkerClick.bind(this)}
         data={venue}/>
       )
   }
   render(){
     return(
-      <ul className="col-md-4 list-group">{this.props.venues.map((venue,index)=>this.renderItem(venue))}</ul>
+      <ul className="col-md-4 list-group" style={{width:"100%"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
     )
   }
 }

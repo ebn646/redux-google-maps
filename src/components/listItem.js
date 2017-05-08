@@ -8,6 +8,7 @@ export default class ListItem extends Component{
 
   componentWillReceiveProps(nextProps){
     var css = (this.state.isSelected === "") ? "selected" : "";
+    console.log('fuck')
     if(nextProps.activeMarker.props.index == this.props.index){
       console.log('props changed=',nextProps.activeMarker.props.index ,',', this.props.index)
       this.setState({"isSelected":css});
