@@ -8,8 +8,10 @@ import * as actionCreators from '../actions'
 
 const GoogleMapWrapper = withGoogleMap(props => (
   <GoogleMap
-  defaultZoom={4}
-  center={props.center}>
+    ref={props.maploaded}
+    defaultZoom={12}
+    onDragEnd={props.mapmoved}
+    center={props.center}>
   {props.markers.map((marker,index)=>(
       <GoogleMarker
         {...props}
@@ -30,7 +32,6 @@ class Map extends Component{
     //this.props.onFetchMarkers();
   }
   componentWillUpdate(nextProps){
-     console.log('map componentWillUpdate',nextProps.activeMarker)
     // if(nextProps.activeMarker){
     //   console.log('YESSSS',nextProps.activeMarker)
     //   console.log(this.props.markers[0])
@@ -44,6 +45,19 @@ class Map extends Component{
   handleMarkerClose(targetMarker){
 
   }
+  mapMoved(){
+    console.log('mapMoved ',JSON.stringify(this.state.map.getCenter()));
+  }
+  mapLoaded(map){
+    console.log('mapLoaded');
+    if(this.state.map != null){
+      return;
+    }else{
+      this.setState({
+        map: map
+      })
+    }
+  }
   render() {
     return (
       <div>
@@ -52,8 +66,10 @@ class Map extends Component{
         containerElement={<div style={{ height: `600px`, width:`100%` }} />}
         mapElement={<div style={{ height: `600px`, width:`100%` }} />}
         center={this.props.center}
+        mapmoved={this.mapMoved.bind(this)}
+        maploaded={this.mapLoaded.bind(this)}
         google={google}
-        markers={this.props.markers}
+        markers={this.props.venues}
         onMarkerClick={this.handleMarkerClick.bind(this)}
         onMarkerClose={this.handleMarkerClose.bind(this)}
         />

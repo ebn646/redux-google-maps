@@ -7,11 +7,13 @@ export default class ListItem extends Component{
   }
 
   componentWillReceiveProps(nextProps){
+    var css = (this.state.isSelected === "") ? "selected" : "";
     if(nextProps.activeMarker.props.index == this.props.index){
       console.log('props changed=',nextProps.activeMarker.props.index ,',', this.props.index)
-
-      var css = (this.state.isSelected === "") ? "selected" : "";
       this.setState({"isSelected":css});
+      return true;
+    }else if(nextProps.activeMarker.props.index != this.props.index){
+      this.setState({"isSelected":""});
       return true;
     }else{
       return false;
@@ -19,12 +21,11 @@ export default class ListItem extends Component{
   }
 
   render(){
-    console.log('list item rendered')
     const style = {
       cursor:'pointer',
       listStyleType:'none',
       borderBottom:'1px solid gray',
-      padding:'10px 0'
+      padding:'10px'
     }
 
     return(

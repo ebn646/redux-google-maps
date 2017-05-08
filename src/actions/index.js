@@ -1,7 +1,9 @@
 import React from 'react';
+import { MARKER_CLICK,FETCH_LOCATIONS,FETCH_MARKERS } from './types';
+import axios from 'axios';
 
-import { MARKER_CLICK } from './types';
-import { FETCH_MARKERS } from './types';
+const ROOT_URL = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=coffee&intent=checkin&client_id=GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ&client_secret=K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
+
 export function onMarkerClicked(marker){
   return {
     type: MARKER_CLICK,
@@ -10,13 +12,23 @@ export function onMarkerClicked(marker){
   }
 }
 
+export function onFetchLocations(){
+    const url = ROOT_URL;
+    const request = axios.get(url);
+
+    return{
+      type: FETCH_LOCATIONS,
+      payload: request
+    };
+}
+
 export function onFetchMarkers(){
   return{
     type: FETCH_MARKERS,
     payload: [
     {
       id:'0',
-      name:"Location 1",
+      name:"Intelligentsia Coffee",
       position: new google.maps.LatLng(-27.363882, 137.044922),
       showInfo: false,
       infoContent: (

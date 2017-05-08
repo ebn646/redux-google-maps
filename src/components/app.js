@@ -10,8 +10,8 @@ class App extends Component {
     super(props)
     this.state={
       center:{
-        lat: -25.363882,
-        lng: 131.044922,
+        lat: 41.878114,
+        lng: -87.629798,
       },
     }
   }
@@ -19,26 +19,32 @@ class App extends Component {
     console.log('list has changed', newState)
   }
   componentWillMount(){
-    this.props.onFetchMarkers()
+    this.props.onFetchMarkers();
+    this.props.onFetchLocations();
   }
   render() {
+    console.log('app props',this.props)
     return (
       <div ref="map">
-      <Map
-        {...this.props}
-        markers={this.state.markers}
-        center={this.state.center}/>
-      <List
-        {...this.props}
-        markers={this.state.markers}/>
+        <div style={{width:'50%',float:'left'}}>
+        <Map
+          {...this.props}
+          center={this.state.center}/>
       </div>
+      <div style={{width:'50%',float:'left'}}>
+        <List
+          {...this.props}/>
+        </div>
+      </div>
+
     );
   }
 }
 
 function mapStateToProps(state){
    return{
-     markers: state.markers
+     markers: state.markers,
+     venues: state.venues
    }
 }
 

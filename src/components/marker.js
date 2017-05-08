@@ -8,27 +8,30 @@ class GoogleMarker extends Component{
   }
 
   componentWillReceiveProps(nextProps){
+    //console.log('nexProps ',nextProps.activeMarker.props.index , this.props.index);
     if(nextProps.activeMarker.props.index == this.props.index){
       console.log('am=',nextProps.activeMarker.props.index ,',', this.props.index)
       this.setState({showInfo:true})
+      return true;
+    }else if(nextProps.activeMarker.props.index != this.props.index){
+      this.setState({showInfo:false})
       return true;
     }else{
       return false;
     }
   }
-  // componentWillUpdate(nextProps){
-  //   console.log('map componentWillUpdate with ',this.props)
-  //   if(nextProps.activeMarker){
-  //     console.log('YESSSS',nextProps.activeMarker)
-  //   }
-  // }
+  getPosition(){
+    return(
+       new google.maps.LatLng(this.props.venues[this.props.index].location.lat, this.props.venues[this.props.index].location.lng)
+     )
+  }
 
   render(){
-    console.log('marker rendered')
+    //console.log('marker rendered',this.props.venues[this.props.index])
       return(
         <Marker
         {...this.props}
-        position={this.props.position}
+        position={this.getPosition()}
         content={this.props.infoContent}
         onClick={() => this.props.onMarkerClick(this)}>
         {/*
@@ -40,7 +43,7 @@ class GoogleMarker extends Component{
           <InfoWindow
             {...this.props}
             onCloseClick={() => props.onMarkerClose()}>
-            <div>{this.props.markers[this.props.index].infoContent}{this.props.markers[this.props.index].name}</div>
+            <div>{this.props.venues[this.props.index].name}{this.props.venues[this.props.index].location.address}</div>
           </InfoWindow>
         )}
       </Marker>
