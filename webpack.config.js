@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const path = require('path');
+
 module.exports = {
   entry: [
     './src/index.js'
@@ -8,19 +11,19 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
+    rules: [{
+      test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
-      }
+      use: [
+      'babel-loader',
+     ],
     }]
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
-  }
+  // resolve: {
+  //   extensions: ['', '.js', '.jsx']
+  // },
+  // devServer: {
+  //   historyApiFallback: true,
+  //   contentBase: './'
+  // }
 };

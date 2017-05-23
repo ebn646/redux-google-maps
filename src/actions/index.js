@@ -2,7 +2,7 @@ import React from 'react';
 import { MARKER_CLICK,FETCH_LOCATIONS,FETCH_MARKERS } from './types';
 import axios from 'axios';
 
-const ROOT_URL = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=coffee&intent=checkin&client_id=GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ&client_secret=K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
+const ROOT_URL = 'https://api.foursquare.com/v2/venues/search?v=20161016&ll=41.878114%2C%20-87.629798&query=food&intent=checkin&client_id=GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ&client_secret=K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
 
 export function onMarkerClicked(marker){
   return {

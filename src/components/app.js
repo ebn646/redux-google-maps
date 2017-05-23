@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Map from './map';
 import List from './list';
- import { bindActionCreators } from 'redux';
- import { connect } from 'react-redux';
- import * as actions from '../actions';
+import DropDown from './dropdown-list';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class App extends Component {
   constructor(props){
@@ -16,7 +17,6 @@ class App extends Component {
     }
   }
   componentWillMount(){
-    this.props.onFetchMarkers();
     this.props.onFetchLocations();
   }
   render() {
@@ -26,6 +26,7 @@ class App extends Component {
         <div className="page-header">
           <h1>React Google Map <small>with redux</small></h1>
         </div>
+        <DropDown />
         <div style={{width:'50%',float:'left'}}>
         <Map
           {...this.props}
