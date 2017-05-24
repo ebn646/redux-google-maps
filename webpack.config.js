@@ -10,6 +10,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  devtool: 'cheap-source-map',
   module: {
     rules: [{
       test: /\.(js|jsx)$/,

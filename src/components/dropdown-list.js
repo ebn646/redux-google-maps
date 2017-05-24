@@ -8,7 +8,7 @@ class DropDown extends Component{
   }
   onCategoryClicked(e){
     var category = e.target.getAttribute('data-value');
-    this.props.onFetchLocations(category);
+    this.props.onCategoryChange(category);
   }
 
   render(){

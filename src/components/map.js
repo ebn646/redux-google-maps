@@ -32,11 +32,10 @@ class Map extends Component{
     //this.props.onFetchMarkers();
   }
   componentWillUpdate(nextProps){
-    // if(nextProps.activeMarker){
-    //   console.log('YESSSS',nextProps.activeMarker)
-    //   console.log(this.props.markers[0])
-    //
-    // }
+    if(nextProps.category !== this.props.category){
+      console.log('componentWillUpdate')
+      this.props.onFetchLocations(nextProps.category);
+    }
   }
   handleMarkerClick(targetMarker){
      var clicked = this.props.onMarkerClicked(targetMarker)
@@ -49,7 +48,6 @@ class Map extends Component{
     console.log('mapMoved ',JSON.stringify(this.state.map.getCenter()));
   }
   mapLoaded(map){
-    console.log('mapLoaded');
     if(this.state.map != null){
       return;
     }else{
@@ -82,7 +80,8 @@ class Map extends Component{
 function mapStateToProps(state){
   return {
     markers: state.markers,
-    activeMarker: state.activeMarker
+    activeMarker: state.activeMarker,
+    category: state.category
   }
 }
 

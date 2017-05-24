@@ -36,7 +36,8 @@ class List extends Component{
 function mapStateToProps(state){
   return{
     markers: state.markers,
-    activeMarker: state.activeMarker
+    activeMarker: state.activeMarker,
+    category: state.category
   }
 }
 

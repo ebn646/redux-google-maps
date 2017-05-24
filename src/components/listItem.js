@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 
 export default class ListItem extends Component{
   constructor(props){
-    super(props)
+      super(props)
       this.state={'isSelected':''}
   }
 
@@ -22,7 +22,6 @@ export default class ListItem extends Component{
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    //console.log('shouldComponentUpdate');
     return nextState.isSelected !== this.state.isSelected;
   }
 
@@ -40,7 +39,9 @@ export default class ListItem extends Component{
         <li
           onClick={()=>this.props.onMarkerClick(this)}
           className={this.state.isSelected}
-          style={style}>{this.props.data.name}
+          style={style}>
+          <h6>{this.props.data.name}</h6>
+          <p>{this.props.data.location.formattedAddress}</p>
         </li>
     )
   }

@@ -8,7 +8,6 @@ class GoogleMarker extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    //console.log('nexProps ',nextProps.activeMarker.props.index , this.props.index);
     if(nextProps.activeMarker.props.index == this.props.index){
       //console.log('am=',nextProps.activeMarker.props.index ,',', this.props.index)
       this.setState({showInfo:true})
@@ -27,7 +26,6 @@ class GoogleMarker extends Component{
   }
 
   render(){
-    //console.log('marker rendered',this.props.venues[this.props.index])
       return(
         <Marker
         {...this.props}

@@ -20,7 +20,6 @@ class App extends Component {
     this.props.onFetchLocations();
   }
   render() {
-    //console.log('app props',this.props)
     return (
       <div>
         <div className="page-header">
@@ -38,7 +37,6 @@ class App extends Component {
           {...this.props}/>
         </div>
       </div>
-
     );
   }
 }
