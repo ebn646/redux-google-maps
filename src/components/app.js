@@ -26,7 +26,8 @@ class App extends Component {
         <div className="page-header">
           <h1>React Google Map <small>with redux</small></h1>
         </div>
-        <DropDown />
+        <DropDown
+        {...this.props}/>
         <div style={{width:'50%',float:'left'}}>
         <Map
           {...this.props}
