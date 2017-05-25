@@ -33,13 +33,13 @@ class Map extends Component{
   }
   componentWillUpdate(nextProps){
     if(nextProps.category !== this.props.category){
-      console.log('componentWillUpdate')
-      this.props.onFetchLocations(nextProps.category);
+      //console.log('componentWillUpdate')
+      //this.props.onFetchLocations(nextProps.category);
     }
   }
   handleMarkerClick(targetMarker){
      var clicked = this.props.onMarkerClicked(targetMarker)
-     console.log('clicked=',clicked)
+     //console.log('clicked=',clicked)
   }
   handleMarkerClose(targetMarker){
 
@@ -57,7 +57,7 @@ class Map extends Component{
     }
   }
   render() {
-      console.log('rendered');
+    //console.log('render map')
     return (
       <div>
         <GoogleMapWrapper
@@ -68,7 +68,7 @@ class Map extends Component{
         mapmoved={this.mapMoved.bind(this)}
         maploaded={this.mapLoaded.bind(this)}
         google={google}
-        markers={this.props.venues}
+        markers={this.props.venues || []}
         onMarkerClick={this.handleMarkerClick.bind(this)}
         onMarkerClose={this.handleMarkerClose.bind(this)}
         />
@@ -79,7 +79,7 @@ class Map extends Component{
 
 function mapStateToProps(state){
   return {
-    markers: state.markers,
+    venues: state.venues,
     activeMarker: state.activeMarker,
     category: state.category
   }

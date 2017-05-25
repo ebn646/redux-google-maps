@@ -19,11 +19,16 @@ class App extends Component {
   componentWillMount(){
     this.props.onFetchLocations();
   }
+  componentWillUpdate(nextProps){
+    if(nextProps.category !== this.props.category){
+      this.props.onFetchLocations(nextProps.category);
+    }
+  }
   render() {
     return (
       <div>
         <div className="page-header">
-          <h1>React Google Map <small>with redux</small></h1>
+          <h1>React Google Map <small>with redux and foursquare</small></h1>
         </div>
         <DropDown
         {...this.props}/>
@@ -43,15 +48,13 @@ class App extends Component {
 
 function mapStateToProps(state){
    return{
-     markers: state.markers,
-     venues: state.venues
+     venues: state.venues,
+     category: state.category
    }
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators(actions,dispatch)
 }
-
-//export default App;
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

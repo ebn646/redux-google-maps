@@ -8,12 +8,11 @@ class GoogleMarker extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeMarker.props.index == this.props.index){
-      //console.log('am=',nextProps.activeMarker.props.index ,',', this.props.index)
-      this.setState({showInfo:true})
+    if(nextProps.activeMarker.props && nextProps.activeMarker.props.index == this.props.index){
+      this.setState({showInfo:true});
       return true;
-    }else if(nextProps.activeMarker.props.index != this.props.index){
-      this.setState({showInfo:false})
+    }else if(this.state.showInfo && nextProps.activeMarker.props && nextProps.activeMarker.props.index != this.props.index){
+      this.setState({showInfo:false});
       return true;
     }else{
       return false;

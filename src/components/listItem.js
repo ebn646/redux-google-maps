@@ -7,10 +7,8 @@ export default class ListItem extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    //console.log('componentWillUpdate')
     var css = (this.state.isSelected === "") ? "selected" : "";
-    if(nextProps.activeMarker.props.index == this.props.index){
-      //console.log('props changed=',nextProps.activeMarker.props.index ,',', this.props.index)
+    if(nextProps.activeMarker.props && nextProps.activeMarker.props.index == this.props.index){
       this.setState({"isSelected":css});
       return true;
     }else if(this.state.isSelected == "selected"){
@@ -21,18 +19,14 @@ export default class ListItem extends Component{
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.isSelected !== this.state.isSelected;
-  }
-
-
   render(){
-    //console.log('list item rendering')
+    //console.log('list item rendering',this.props)
     const style = {
       cursor:'pointer',
       listStyleType:'none',
       borderBottom:'1px solid gray',
-      padding:'10px'
+      padding:'10px',
+      overflow:'hidden'
     }
 
     return(
@@ -40,8 +34,11 @@ export default class ListItem extends Component{
           onClick={()=>this.props.onMarkerClick(this)}
           className={this.state.isSelected}
           style={style}>
-          <h6>{this.props.data.name}</h6>
-          <p>{this.props.data.location.formattedAddress}</p>
+          <div className="col-sm-3">  <img src="http://placehold.it/100x100" /></div>
+          <div className="col-sm-9">
+            <h6><span>{this.props.index}</span> <span>{this.props.data.name}</span></h6>
+            <p>{this.props.data.location.formattedAddress}</p>
+          </div>
         </li>
     )
   }

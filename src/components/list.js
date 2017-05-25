@@ -11,7 +11,14 @@ class List extends Component{
 
   }
   componentDidUpdate(){
-      //console.log('list componentDidUpdate',this.props.activeMarker)
+      console.log('list componentDidUpdate',this.props)
+  }
+  componentWillUpdate(nextProps){
+    if(nextProps.category !== this.props.category){
+      console.log('LIST COMPONENT ',nextProps.category)
+      //this.props.onFetchLocations(nextProps.category);
+      return true;
+    }
   }
   handleMarkerClick(marker){
     this.props.onMarkerClicked(marker);
@@ -27,15 +34,16 @@ class List extends Component{
       )
   }
   render(){
+    const venues = this.props.venues || [];
     return(
-      <ul className="col-md-4 list-group" style={{width:"100%",height:"600px", overflowY:"scroll"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+      <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"600px", overflowY:"scroll"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
     )
   }
 }
 
 function mapStateToProps(state){
   return{
-    markers: state.markers,
+    venues: state.venues,
     activeMarker: state.activeMarker,
     category: state.category
   }
