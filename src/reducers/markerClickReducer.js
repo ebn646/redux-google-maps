@@ -5,7 +5,6 @@ var initialState = {
 	activeMarker: null
 }
 
-
 export default function (state = initialState, action){
   switch (action.type) {
     case MARKER_CLICK:

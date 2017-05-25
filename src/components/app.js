@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Map from './map';
 import List from './list';
+import Header from './header';
+import Footer from './footer';
+
 import DropDown from './dropdown-list';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -27,12 +30,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="page-header" style={{textAlign:'center'}}>
-          <h2><small>React Google Map with redux and foursquare</small></h2>
-        </div>
+        <Header
+          {...this.props}/>
         <div style={{width:'35%',float:'left'}}>
-          <DropDown
-            {...this.props}/>
           <List
             {...this.props}/>
         </div>
@@ -41,6 +41,7 @@ class App extends Component {
             {...this.props}
             center={this.state.center}/>
         </div>
+        <Footer />
       </div>
     );
   }
