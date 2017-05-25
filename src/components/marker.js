@@ -40,7 +40,10 @@ class GoogleMarker extends Component{
           <InfoWindow
             {...this.props}
             onCloseClick={() => this.props.onMarkerClose()}>
-            <div>{this.props.venues[this.props.index].name}{this.props.venues[this.props.index].location.address}</div>
+            <div>
+              <img src="http://lorempixel.com/35/35/" />
+              {this.props.venues[this.props.index].name}{this.props.venues[this.props.index].location.address}
+            </div>
           </InfoWindow>
         )}
       </Marker>

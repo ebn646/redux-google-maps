@@ -1,9 +1,5 @@
 import { FETCH_LOCATIONS } from '../actions/types';
 
-var initialState = {
-	venues: null
-}
-
 export default (state = [],action)=>{
 switch(action.type){
   case FETCH_LOCATIONS:

@@ -27,19 +27,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="page-header">
-          <h1>React Google Map <small>with redux and foursquare</small></h1>
+        <div className="page-header" style={{textAlign:'center'}}>
+          <h2><small>React Google Map with redux and foursquare</small></h2>
         </div>
-        <DropDown
-        {...this.props}/>
-        <div style={{width:'50%',float:'left'}}>
-        <Map
-          {...this.props}
-          center={this.state.center}/>
-      </div>
-      <div style={{width:'50%',float:'left'}}>
-        <List
-          {...this.props}/>
+        <div style={{width:'35%',float:'left'}}>
+          <DropDown
+            {...this.props}/>
+          <List
+            {...this.props}/>
+        </div>
+        <div style={{width:'65%',float:'left'}}>
+          <Map
+            {...this.props}
+            center={this.state.center}/>
         </div>
       </div>
     );

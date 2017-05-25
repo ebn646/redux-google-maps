@@ -14,8 +14,10 @@ class DropDown extends Component{
   render(){
     return(
       <div className="dropdown">
-      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-      <span className="caret"></span></button>
+      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        <span>  I am looking for...</span>
+        <span className="caret"></span>
+      </button>
       <ul className="dropdown-menu">
         <li data-value='food' onClick={this.onCategoryClicked.bind(this)}>Food</li>
         <li data-value='coffee' onClick={this.onCategoryClicked.bind(this)}>Coffee</li>

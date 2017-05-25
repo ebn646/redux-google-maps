@@ -11,11 +11,10 @@ class List extends Component{
 
   }
   componentDidUpdate(){
-      console.log('list componentDidUpdate',this.props)
+      //console.log('list componentDidUpdate',this.props)
   }
   componentWillUpdate(nextProps){
     if(nextProps.category !== this.props.category){
-      console.log('LIST COMPONENT ',nextProps.category)
       //this.props.onFetchLocations(nextProps.category);
       return true;
     }
@@ -36,7 +35,7 @@ class List extends Component{
   render(){
     const venues = this.props.venues || [];
     return(
-      <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"600px", overflowY:"scroll"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+      <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
     )
   }
 }

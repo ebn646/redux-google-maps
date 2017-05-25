@@ -34,7 +34,9 @@ export default class ListItem extends Component{
           onClick={()=>this.props.onMarkerClick(this)}
           className={this.state.isSelected}
           style={style}>
-          <div className="col-sm-3">  <img src="http://placehold.it/100x100" /></div>
+          <div className="col-sm-3">
+            <img src="http://lorempixel.com/100/100/" />
+          </div>
           <div className="col-sm-9">
             <h6><span>{this.props.index}</span> <span>{this.props.data.name}</span></h6>
             <p>{this.props.data.location.formattedAddress}</p>

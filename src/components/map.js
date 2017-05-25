@@ -9,7 +9,7 @@ import * as actionCreators from '../actions'
 const GoogleMapWrapper = withGoogleMap(props => (
   <GoogleMap
     ref={props.maploaded}
-    defaultZoom={12}
+    defaultZoom={14}
     onDragEnd={props.mapmoved}
     center={props.center}>
   {props.markers.map((marker,index)=>(
@@ -62,8 +62,8 @@ class Map extends Component{
       <div>
         <GoogleMapWrapper
         {...this.props}
-        containerElement={<div style={{ height: `600px`, width:`100%` }} />}
-        mapElement={<div style={{ height: `600px`, width:`100%` }} />}
+        containerElement={<div style={{ height: `800px`, width:`100%` }} />}
+        mapElement={<div style={{ height: `100%`, width:`100%` }} />}
         center={this.props.center}
         mapmoved={this.mapMoved.bind(this)}
         maploaded={this.mapLoaded.bind(this)}

@@ -1,6 +1,5 @@
 //when and action comes across with the MARKER_CLICK
 import{ MARKER_CLICK } from '../actions/types';
-import GoogleMarker from '../components/marker';
 
 var initialState = {
 	activeMarker: null
