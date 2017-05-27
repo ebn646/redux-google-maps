@@ -19,7 +19,7 @@ export default class ListItem extends Component{
     }
   }
 
-  render(){ 
+  render(){
     const style = {
       cursor:'pointer',
       listStyleType:'none',
@@ -39,6 +39,7 @@ export default class ListItem extends Component{
           <div className="col-sm-9">
             <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
             <p>{this.props.data.venue.location.formattedAddress}</p>
+              <p>{this.props.data.venue.categories[0].name}</p>
           </div>
         </li>
     )

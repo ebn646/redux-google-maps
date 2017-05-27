@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   activeMarker:markerClickReducer,
   venues: locationsReducer,
   category: categoryReducer,
+  mapMoved:mapMovedReducer
 });
 
 export default rootReducer;

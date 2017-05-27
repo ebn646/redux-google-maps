@@ -7,11 +7,12 @@ const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/'
 export function onMarkerClicked(marker){
   return {
     type: MARKER_CLICK,
-    marker: marker
+    marker
   }
 }
 
 export function onFetchLocations(category){
+  console.log('onFetchLocations')
     if(category == undefined)category = 'food';
     const query = category;
     const client_id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
@@ -37,9 +38,28 @@ export function onFetchLocations(category){
 }
 
 export function onCategoryChange(category){
+  console.log('onCategoryChange ',category)
+  if(category == undefined)category = 'food';
+  const query = category;
+  const client_id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
+  const client_secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM';
+  const url = ROOT_URL
+  +'?v=20131124'
+  +'&ll='
+  +'30.26715,-97.74306'
+  +'&query='
+  +query
+  +'&client_id='
+  +client_id
+  +'&client_secret='
+  +client_secret
+  +'&venuePhotos=1';
+
+  const request = axios.get(url);
+
   return{
     type: CATEGORY_CHANGE,
-    category: category
+    payload: request,
   }
 }
 

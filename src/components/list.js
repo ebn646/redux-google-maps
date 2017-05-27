@@ -8,10 +8,12 @@ class List extends Component{
     super(props);
   }
   componentWillUpdate(nextProps){
-    if(nextProps.category !== this.props.category){
-      //this.props.onFetchLocations(nextProps.category);
-      return true;
-    }
+    // if(nextProps.category !== this.props.category){
+    //   //this.props.onFetchLocations(nextProps.category);
+    //   return true;
+    // }else{
+      return false;
+    //}
   }
   handleMarkerClick(marker){
     this.props.onMarkerClicked(marker);
@@ -28,15 +30,18 @@ class List extends Component{
   }
   render(){
     const venues = this.props.venues || [];
-    return(
-      <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{this.props.venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
-    )
+    //if(venues.length >= 30){
+      return(
+        <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+      )
+    //}else{
+      //return <div></div>;
+    //}
   }
 }
 
 function mapStateToProps(state){
   return{
-    venues: state.venues,
     activeMarker: state.activeMarker,
     category: state.category
   }

@@ -22,9 +22,12 @@ class App extends Component {
   componentWillMount(){
     this.props.onFetchLocations();
   }
-  componentWillUpdate(nextProps){
+  componentWillReceiveProps(nextProps){
     if(nextProps.category !== this.props.category){
       this.props.onFetchLocations(nextProps.category);
+      return true;
+    }else{
+      return false;
     }
   }
   render() {

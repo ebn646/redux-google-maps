@@ -42,17 +42,22 @@ const GoogleMapWrapper = withGoogleMap(props => (
 class Map extends Component{
   constructor(props){
     super(props)
-    this.state={map:null}
+    this.state={map:null,markers:[]}
   }
   handleMarkerClick(targetMarker){
      var clicked = this.props.onMarkerClicked(targetMarker)
      //console.log('clicked=',clicked)
   }
+  componentWillUpdate(nextProps){
+    if(nextProps.category != this.props.category){
+      this.props.onMapMoved(this.props.category,this.state.map.getCenter())
+    }
+  }
+
   handleMarkerClose(targetMarker){
 
   }
   mapMoved(){
-    console.log('mapMoved ',JSON.stringify(this.state.map.getCenter()));
     this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
   mapLoaded(map){

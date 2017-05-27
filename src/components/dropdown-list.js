@@ -8,7 +8,7 @@ class DropDown extends Component{
   }
   onCategoryClicked(e){
     var category = e.target.getAttribute('data-value');
-    this.props.onCategoryChange(category);
+    this.props.onCategoryChange(category,this.props.activeMarker);
   }
 
   render(){
@@ -31,6 +31,7 @@ class DropDown extends Component{
 function mapStateToProps(state){
   return {
     category: state.category,
+    activeMarker: state.activeMarker,
   }
 }
 

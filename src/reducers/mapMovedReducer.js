@@ -7,7 +7,7 @@ switch(action.type){
 		// let updated = Object.assign({}, state)
 		// updated['venues'] = action.payload.data.response.venues
 		// return updated
-    return action.center;
+    return true;
 }
   return state;
 }

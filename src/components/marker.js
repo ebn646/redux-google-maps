@@ -9,12 +9,19 @@ class GoogleMarker extends Component{
   componentWillReceiveProps(nextProps){
     if(nextProps.activeMarker.props && nextProps.activeMarker.props.index == this.props.index){
       this.setState({showInfo:true});
-      return true;
-    }else if(this.state.showInfo && nextProps.activeMarker.props && nextProps.activeMarker.props.index != this.props.index){
+    }
+    else if(this.state.showInfo && nextProps.activeMarker.props && nextProps.activeMarker.props.index != this.props.index){
       this.setState({showInfo:false});
-      return true;
-    }else{
-      return false;
+    }
+
+    return false;
+  }
+  _onMouseEnterContent(){
+    this.setState({showInfo:true});
+  }
+  _onMouseLeaveContent(){
+    if(this.props.activeMarker.props == undefined || this.props.activeMarker.props.index != this.props.index){
+      this.setState({showInfo:false});
     }
   }
   getPosition(){
@@ -22,12 +29,17 @@ class GoogleMarker extends Component{
        new google.maps.LatLng(this.props.venues[this.props.index].venue.location.lat, this.props.venues[this.props.index].venue.location.lng)
      )
   }
+  renderHelper(){
+    console.log('rener helper')
+  }
   render(){
       return(
         <Marker
         {...this.props}
         position={this.getPosition()}
         content={this.props.infoContent}
+        onMouseOver={()=>this._onMouseEnterContent()}
+        onMouseOut={()=>this._onMouseLeaveContent()}
         onClick={() => this.props.onMarkerClick(this)}>
         {
           /*
@@ -55,7 +67,8 @@ function mapStateToProps(state){
   return {
     markers: state.markers,
     activeMarker: state.activeMarker,
-    category: state.category
+    category: state.category,
+    mapMoved: state.mapMoved
   }
 }
 
