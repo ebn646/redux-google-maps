@@ -20,7 +20,7 @@ class GoogleMarker extends Component{
   }
   getPosition(){
     return(
-       new google.maps.LatLng(this.props.venues[this.props.index].location.lat, this.props.venues[this.props.index].location.lng)
+       new google.maps.LatLng(this.props.venues[this.props.index].venue.location.lat, this.props.venues[this.props.index].venue.location.lng)
      )
   }
 
@@ -41,8 +41,8 @@ class GoogleMarker extends Component{
             {...this.props}
             onCloseClick={() => this.props.onMarkerClose()}>
             <div>
-              <img src="http://lorempixel.com/35/35/" />
-              {this.props.venues[this.props.index].name}{this.props.venues[this.props.index].location.address}
+              <img src={this.props.venues[this.props.index].venue.photos.groups[0].items[0].prefix +'30x30' + this.props.venues[this.props.index].venue.photos.groups[0].items[0].suffix} />
+              {this.props.venues[this.props.index].venue.name}{this.props.venues[this.props.index].venue.location.address}
             </div>
           </InfoWindow>
         )}

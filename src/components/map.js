@@ -9,7 +9,7 @@ import * as actionCreators from '../actions'
 const GoogleMapWrapper = withGoogleMap(props => (
   <GoogleMap
     ref={props.maploaded}
-    defaultZoom={14}
+    defaultZoom={12}
     onDragEnd={props.mapmoved}
     center={props.center}>
   {props.markers.map((marker,index)=>(

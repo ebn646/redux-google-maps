@@ -20,7 +20,8 @@ export default class ListItem extends Component{
   }
 
   render(){
-    //console.log('list item rendering',this.props)
+    //<img src="https://igx.4sqi.net/img/general/300x300/44275314_ygvkMuT8ETHW_Z1DVlJ79Om5JZ2Z8Mgrj9guaf7-3dM.jpg" />
+    console.log(this.props.data.venue.photos.groups[0].items[0].prefix)
     const style = {
       cursor:'pointer',
       listStyleType:'none',
@@ -35,11 +36,11 @@ export default class ListItem extends Component{
           className={this.state.isSelected}
           style={style}>
           <div className="col-sm-3">
-            <img src="http://lorempixel.com/100/100/" />
+            <img src={this.props.data.venue.photos.groups[0].items[0].prefix +'300x300' + this.props.data.venue.photos.groups[0].items[0].suffix} />
           </div>
           <div className="col-sm-9">
-            <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.name}</span></h6>
-            <p>{this.props.data.location.formattedAddress}</p>
+            <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
+            <p>{this.props.data.venue.location.formattedAddress}</p>
           </div>
         </li>
     )

@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-
+const DashboardPlugin = require('webpack-dashboard/plugin');
 module.exports = {
   entry: [
     './src/index.js'
@@ -23,9 +23,12 @@ module.exports = {
   // resolve: {
   //   extensions: ['', '.js', '.jsx']
   // },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './',
-    port:8081,
-  }
+  plugins: [
+    new DashboardPlugin({ port: 8080animations })
+  ],
+  // devServer: {
+  //   historyApiFallback: true,
+  //   contentBase: './',
+  //   port:8081,
+  // }
 };
