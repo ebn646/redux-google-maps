@@ -6,7 +6,6 @@ class GoogleMarker extends Component{
     super(props);
     this.state = { showInfo: false }
   }
-
   componentWillReceiveProps(nextProps){
     if(nextProps.activeMarker.props && nextProps.activeMarker.props.index == this.props.index){
       this.setState({showInfo:true});
@@ -23,7 +22,6 @@ class GoogleMarker extends Component{
        new google.maps.LatLng(this.props.venues[this.props.index].venue.location.lat, this.props.venues[this.props.index].venue.location.lng)
      )
   }
-
   render(){
       return(
         <Marker
@@ -31,17 +29,19 @@ class GoogleMarker extends Component{
         position={this.getPosition()}
         content={this.props.infoContent}
         onClick={() => this.props.onMarkerClick(this)}>
-        {/*
+        {
+          /*
           Show info window only if the 'showInfo' key of the marker is true.
           That is, when the Marker pin has been clicked and 'onCloseClick' has been
           Successfully fired.
-        */}
+          */
+        }
         {this.state.showInfo && (
           <InfoWindow
             {...this.props}
             onCloseClick={() => this.props.onMarkerClose()}>
             <div>
-              <img src={this.props.venues[this.props.index].venue.photos.groups[0].items[0].prefix +'30x30' + this.props.venues[this.props.index].venue.photos.groups[0].items[0].suffix} />
+              <img src={this.props.venues[this.props.index].venue.featuredPhotos.items[0].prefix +'100x100' + this.props.venues[this.props.index].venue.featuredPhotos.items[0].suffix} />
               {this.props.venues[this.props.index].venue.name}{this.props.venues[this.props.index].venue.location.address}
             </div>
           </InfoWindow>
@@ -54,7 +54,8 @@ class GoogleMarker extends Component{
 function mapStateToProps(state){
   return {
     markers: state.markers,
-    activeMarker: state.activeMarker
+    activeMarker: state.activeMarker,
+    category: state.category
   }
 }
 

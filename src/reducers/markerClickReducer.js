@@ -8,7 +8,7 @@ var initialState = {
 export default function (state = initialState, action){
   switch (action.type) {
     case MARKER_CLICK:
-      return {...state,...action.payload,...{showInfo:true}};
+      return {...state,...action.marker,...{showInfo:true}};
     default:
       return state;
   }

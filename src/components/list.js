@@ -7,12 +7,6 @@ class List extends Component{
   constructor(props){
     super(props);
   }
-  componentWillMount(){
-
-  }
-  componentDidUpdate(){
-      //console.log('list componentDidUpdate',this.props)
-  }
   componentWillUpdate(nextProps){
     if(nextProps.category !== this.props.category){
       //this.props.onFetchLocations(nextProps.category);

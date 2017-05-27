@@ -1,9 +1,18 @@
+.gm-style-mtc {
+  display: none;
+}
+
 .selected{
-  background: #ccc;
+  background: #f5f5f5;
 }
 
 .dropdown{
   z-index: 10;
+  display: inline-block;
+  margin:0 10px;
+}
+.page-header h4{
+  margin-left:10px;
 }
 
 .dropdown li{
@@ -22,12 +31,12 @@ img{
 }
 
 footer{
-  padding:20px;
+  padding:10px;
   background: #ccc;
 }
 
 .App-logo{
-  height:40px;
+  height:38px;
   display:inline;
   -webkit-animation:App-logo-spin infinite 20s linear;
   animation:App-logo-spin infinite 20s linear;

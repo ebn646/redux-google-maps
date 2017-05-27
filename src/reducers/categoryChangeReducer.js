@@ -1,5 +1,9 @@
 import { CATEGORY_CHANGE } from '../actions/types';
 
+var initialState = {
+	activeMarker: null
+}
+
 export default function(state = '', action){
   switch (action.type) {
     case CATEGORY_CHANGE:

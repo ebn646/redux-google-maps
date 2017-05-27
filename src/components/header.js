@@ -5,14 +5,12 @@ class Header extends Component{
   render(){
     return (
       <div className="page-header row" style={{background:'#222'}}>
-        <div className="col-sm-2" style={{textAlign:'left',color:"white"}}>
-          <h4>FOURSQUARE</h4>
+        <div className="col-sm-3" style={{textAlign:'left',color:"white"}}>
+          <h4 style={{display:'inline-block'}}>FOURSQUARE</h4>
+            <DropDown
+              {...this.props}/>
         </div>
-        <div className="col-sm-2" style={{textAlign:'left'}}>
-          <DropDown
-            {...this.props}/>
-        </div>
-        <div className="col-sm-8" style={{textAlign:'right'}}>
+        <div className="col-sm-9" style={{textAlign:'center'}}>
             <img className="App-logo" src="images/logo.svg" />
         </div>
       </div>

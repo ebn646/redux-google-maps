@@ -3,13 +3,29 @@ import { connect } from 'react-redux';
 import { GoogleMapLoader, withGoogleMap, GoogleMap } from 'react-google-maps';
 import GoogleMarker from './marker';
 import GInfoWindow from './infowindow';
-
 import * as actionCreators from '../actions'
 
 const GoogleMapWrapper = withGoogleMap(props => (
   <GoogleMap
+    defaultOptions={{
+      scrollwheel: false,
+      mapTypeId: 'roadmap',
+      mapTypeControl: false,
+      streetViewControl: false,
+      styles:[
+        {
+          featureType: 'poi',
+          stylers: [{visibility: 'off'}]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'labels.icon',
+          stylers: [{visibility: 'off'}]
+        },
+      ]
+    }}
     ref={props.maploaded}
-    defaultZoom={12}
+    defaultZoom={17}
     onDragEnd={props.mapmoved}
     center={props.center}>
   {props.markers.map((marker,index)=>(
@@ -26,16 +42,7 @@ const GoogleMapWrapper = withGoogleMap(props => (
 class Map extends Component{
   constructor(props){
     super(props)
-    this.state={markers:[]}
-  }
-  componentWillMount(){
-    //this.props.onFetchMarkers();
-  }
-  componentWillUpdate(nextProps){
-    if(nextProps.category !== this.props.category){
-      //console.log('componentWillUpdate')
-      //this.props.onFetchLocations(nextProps.category);
-    }
+    this.state={map:null}
   }
   handleMarkerClick(targetMarker){
      var clicked = this.props.onMarkerClicked(targetMarker)
@@ -46,6 +53,7 @@ class Map extends Component{
   }
   mapMoved(){
     console.log('mapMoved ',JSON.stringify(this.state.map.getCenter()));
+    this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
   mapLoaded(map){
     if(this.state.map != null){
@@ -81,7 +89,8 @@ function mapStateToProps(state){
   return {
     venues: state.venues,
     activeMarker: state.activeMarker,
-    category: state.category
+    category: state.category,
+    mapMoved: state.mapMoved
   }
 }
 
