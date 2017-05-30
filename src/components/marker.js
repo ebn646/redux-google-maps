@@ -7,13 +7,16 @@ class GoogleMarker extends Component{
     this.state = { showInfo: false }
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeMarker.props && nextProps.activeMarker.props.index == this.props.index){
+    if(nextProps.activeMarker.index <= 0){
+      this.setState({showInfo:false});
+      return;
+    }
+    else if(nextProps.activeMarker.props && nextProps.activeMarker.index == this.props.index){
       this.setState({showInfo:true});
     }
     else if(this.state.showInfo && nextProps.activeMarker.props && nextProps.activeMarker.props.index != this.props.index){
       this.setState({showInfo:false});
     }
-
     return false;
   }
   _onMouseEnterContent(){
@@ -28,9 +31,6 @@ class GoogleMarker extends Component{
     return(
        new google.maps.LatLng(this.props.venues[this.props.index].venue.location.lat, this.props.venues[this.props.index].venue.location.lng)
      )
-  }
-  renderHelper(){
-    console.log('rener helper')
   }
   render(){
       return(
@@ -54,7 +54,7 @@ class GoogleMarker extends Component{
             onCloseClick={() => this.props.onMarkerClose()}>
             <div>
               <img src={this.props.venues[this.props.index].venue.featuredPhotos.items[0].prefix +'100x100' + this.props.venues[this.props.index].venue.featuredPhotos.items[0].suffix} />
-              {this.props.venues[this.props.index].venue.name}{this.props.venues[this.props.index].venue.location.address}
+              <span>{this.props.index+1}.</span> {this.props.venues[this.props.index].venue.name}{this.props.venues[this.props.index].venue.location.address}
             </div>
           </InfoWindow>
         )}
@@ -62,11 +62,10 @@ class GoogleMarker extends Component{
       )
   }
 }
-
 function mapStateToProps(state){
   return {
     markers: state.markers,
-    activeMarker: state.activeMarker,
+    activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
     mapMoved: state.mapMoved
   }

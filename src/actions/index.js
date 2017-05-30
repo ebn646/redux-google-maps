@@ -2,7 +2,9 @@ import React from 'react';
 import { MARKER_CLICK,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED } from './types';
 import axios from 'axios';
 
-const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/'
+const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/';
+const id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
+const secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
 
 export function onMarkerClicked(marker){
   return {
@@ -12,11 +14,8 @@ export function onMarkerClicked(marker){
 }
 
 export function onFetchLocations(category){
-  console.log('onFetchLocations')
     if(category == undefined)category = 'food';
     const query = category;
-    const client_id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
-    const client_secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM';
     const url = ROOT_URL
     +'?v=20131124'
     +'&ll='
@@ -24,9 +23,9 @@ export function onFetchLocations(category){
     +'&query='
     +query
     +'&client_id='
-    +client_id
+    +id
     +'&client_secret='
-    +client_secret
+    +secret
     +'&venuePhotos=1';
 
     const request = axios.get(url);
@@ -38,11 +37,8 @@ export function onFetchLocations(category){
 }
 
 export function onCategoryChange(category){
-  console.log('onCategoryChange ',category)
   if(category == undefined)category = 'food';
   const query = category;
-  const client_id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
-  const client_secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM';
   const url = ROOT_URL
   +'?v=20131124'
   +'&ll='
@@ -50,9 +46,9 @@ export function onCategoryChange(category){
   +'&query='
   +query
   +'&client_id='
-  +client_id
+  +id
   +'&client_secret='
-  +client_secret
+  +secret
   +'&venuePhotos=1';
 
   const request = axios.get(url);
@@ -69,9 +65,6 @@ export function onMapMoved(category,center){
   var latitude = NewMapCenter.lat();
   var longitude = NewMapCenter.lng();
   const query = category;
-
-  const client_id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
-  const client_secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM';
   const url = ROOT_URL
   +'?v=20131124'
   +'&ll='
@@ -79,9 +72,9 @@ export function onMapMoved(category,center){
   +'&query='
   +query
   +'&client_id='
-  +client_id
+  +id
   +'&client_secret='
-  +client_secret
+  +secret
   +'&venuePhotos=1';
 
   const request = axios.get(url);

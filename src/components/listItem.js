@@ -5,7 +5,6 @@ export default class ListItem extends Component{
       super(props)
       this.state={'isSelected':''}
   }
-
   componentWillReceiveProps(nextProps){
     var css = (this.state.isSelected === "") ? "selected" : "";
     if(nextProps.activeMarker.props && nextProps.activeMarker.props.index == this.props.index){
@@ -18,7 +17,6 @@ export default class ListItem extends Component{
       return false;
     }
   }
-
   render(){
     const style = {
       cursor:'pointer',
