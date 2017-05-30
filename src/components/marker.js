@@ -7,7 +7,7 @@ class GoogleMarker extends Component{
     this.state = { showInfo: false }
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeMarker.index <= 0){
+    if(nextProps.activeMarker.index < 0){
       this.setState({showInfo:false});
       return;
     }
@@ -52,9 +52,15 @@ class GoogleMarker extends Component{
           <InfoWindow
             {...this.props}
             onCloseClick={() => this.props.onMarkerClose()}>
-            <div>
-              <img src={this.props.venues[this.props.index].venue.featuredPhotos.items[0].prefix +'100x100' + this.props.venues[this.props.index].venue.featuredPhotos.items[0].suffix} />
-              <span>{this.props.index+1}.</span> {this.props.venues[this.props.index].venue.name}{this.props.venues[this.props.index].venue.location.address}
+            <div className="row">
+              <img className="col-sm-3" src={this.props.venues[this.props.index].venue.featuredPhotos.items[0].prefix +'100x100' + this.props.venues[this.props.index].venue.featuredPhotos.items[0].suffix} />
+              <div className="col-sm-9">
+                <a href={this.props.venues[this.props.index].venue.url} target="_blank">
+                  <span>{this.props.index+1}.</span>
+                  {this.props.venues[this.props.index].venue.name}
+                </a>
+              </div>
+              <small>{this.props.venues[this.props.index].venue.location.address}</small>
             </div>
           </InfoWindow>
         )}

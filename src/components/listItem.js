@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import { Link } from 'react-router';
 
 export default class ListItem extends Component{
   constructor(props){
@@ -34,11 +35,15 @@ export default class ListItem extends Component{
           <div className="col-sm-3">
             <img src={this.props.data.venue.featuredPhotos.items[0].prefix +'100x100' + this.props.data.venue.featuredPhotos.items[0].suffix} />
           </div>
-          <div className="col-sm-9">
-            <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
-            <p>{this.props.data.venue.location.formattedAddress}</p>
-              <p>{this.props.data.venue.categories[0].name}</p>
+          <div className="col-sm-8">
+            <a href={this.props.data.venue.url} target="_blank">
+              <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
+            </a>
+            <small>{this.props.data.venue.categories[0].name}</small>
+            <p>{this.props.data.venue.location.address}</p>
+            <p>{this.props.data.venue.location.city}, {this.props.data.venue.location.state}</p>
           </div>
+          <div className="col-sm-1">{this.props.data.venue.rating}</div>
         </li>
     )
   }
