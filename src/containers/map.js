@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleMapLoader, withGoogleMap, GoogleMap } from 'react-google-maps';
-import GoogleMarker from './marker';
-import GInfoWindow from './infowindow';
+import GoogleMarker from '../components/marker';
+//import GInfoWindow from './infowindow';
 import * as actionCreators from '../actions'
 
 const GoogleMapWrapper = withGoogleMap(props => (
@@ -46,7 +46,6 @@ class Map extends Component{
   }
   handleMarkerClick(targetMarker){
      var clicked = this.props.onMarkerClicked(targetMarker)
-     //console.log('clicked=',clicked)
   }
   componentWillUpdate(nextProps){
     if(nextProps.category != this.props.category){
@@ -93,7 +92,7 @@ class Map extends Component{
 function mapStateToProps(state){
   return {
     venues: state.venues,
-    activeMarker: state.activeMarker,
+    activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
     mapMoved: state.mapMoved
   }

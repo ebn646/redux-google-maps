@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Map from './map';
 import List from './list';
-import Header from './header';
-import Footer from './footer';
-
+import Header from '../components/header';
+import Footer from '../components/footer';
 import DropDown from './dropdown-list';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

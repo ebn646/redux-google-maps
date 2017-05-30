@@ -7,14 +7,14 @@ class GoogleMarker extends Component{
     this.state = { showInfo: false }
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeMarker.index < 0){
+    if(nextProps.activeMarkerIndex.index < 0){
       this.setState({showInfo:false});
       return;
     }
-    else if(nextProps.activeMarker.props && nextProps.activeMarker.index == this.props.index){
+    else if(nextProps.activeMarkerIndex.props && nextProps.activeMarkerIndex.index == this.props.index){
       this.setState({showInfo:true});
     }
-    else if(this.state.showInfo && nextProps.activeMarker.props && nextProps.activeMarker.props.index != this.props.index){
+    else if(this.state.showInfo && nextProps.activeMarkerIndex.props && nextProps.activeMarkerIndex.props.index != this.props.index){
       this.setState({showInfo:false});
     }
     return false;
@@ -23,7 +23,7 @@ class GoogleMarker extends Component{
     this.setState({showInfo:true});
   }
   _onMouseLeaveContent(){
-    if(this.props.activeMarker.props == undefined || this.props.activeMarker.props.index != this.props.index){
+    if(this.props.activeMarkerIndex.props == undefined || this.props.activeMarkerIndex.props.index != this.props.index){
       this.setState({showInfo:false});
     }
   }
@@ -66,14 +66,6 @@ class GoogleMarker extends Component{
         )}
       </Marker>
       )
-  }
-}
-function mapStateToProps(state){
-  return {
-    markers: state.markers,
-    activeMarkerIndex: state.activeMarkerIndex,
-    category: state.category,
-    mapMoved: state.mapMoved
   }
 }
 

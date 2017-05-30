@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import ListItem from './listitem';
+import { connect } from 'react-redux';
+import ListItem from '../components/listitem';
 import * as actions from '../actions';
 
 class List extends Component{
   constructor(props){
     super(props);
   }
-  componentWillUpdate(nextProps){
+  //componentWillUpdate(nextProps){
     // if(nextProps.category !== this.props.category){
     //   //this.props.onFetchLocations(nextProps.category);
     //   return true;
     // }else{
-      return false;
-    //}
-  }
+    //   return false;
+    // }
+     //console.log(nextProps.category.category)
+  //}
   handleMarkerClick(marker){
     this.props.onMarkerClicked(marker);
   }
@@ -30,20 +31,20 @@ class List extends Component{
   }
   render(){
     const venues = this.props.venues || [];
-    //if(venues.length >= 30){
       return(
-        <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+        <div>
+          <p style={{padding:'10px 10px 0 10px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>Austin</strong></p>
+          <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+        </div>
       )
-    //}else{
-      //return <div></div>;
-    //}
   }
 }
 
 function mapStateToProps(state){
   return{
-    activeMarker: state.activeMarker,
-    category: state.category
+    activeMarkerIndex: state.activeMarkerIndex,
+    category: state.category,
+    city: state.city
   }
 }
 

@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import markerClickReducer from './markerClickReducer';
 import categoryReducer from './categoryChangeReducer';
-import locationsReducer from './locationsReducer';
-import mapMovedReducer from './mapMovedReducer';
+import fetchLocationsReducer from './fetchLocationsReducer';
+import getCityReducer from './getCityReducer';
 import { Map } from 'immutable';
 
 const rootReducer = combineReducers({
-  activeMarker:markerClickReducer,
-  venues: locationsReducer,
+  activeMarkerIndex: markerClickReducer,
+  venues: fetchLocationsReducer,
   category: categoryReducer,
-  mapMoved:mapMovedReducer
+  city: getCityReducer
 });
 
 export default rootReducer;

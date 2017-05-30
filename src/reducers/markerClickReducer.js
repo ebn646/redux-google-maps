@@ -2,7 +2,7 @@
 import{ MARKER_CLICK,CATEGORY_CHANGE } from '../actions/types';
 
 var initialState = {
-	activeMarker: null
+	activeMarkerIndex: null
 }
 
 export default function (state = initialState, action){
@@ -10,7 +10,6 @@ export default function (state = initialState, action){
     case MARKER_CLICK:
       return {...state,...action.marker,...{index:action.marker.props.index}};
 		case CATEGORY_CHANGE:
-		    var obj = {...state,...action.marker,...{index:-1}};
 	      return {...state,...action.marker,...{index:-1}};
     default:
       return state;
