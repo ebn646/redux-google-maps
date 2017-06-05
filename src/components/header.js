@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component } from 'react';
 import DropDown from '../containers/dropdown-list'
 
 class Header extends Component{
@@ -16,7 +16,6 @@ class Header extends Component{
       </div>
     )
   }
-
 }
 
 export default Header

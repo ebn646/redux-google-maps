@@ -1,15 +1,17 @@
-import { FETCH_LOCATIONS, CATEGORY_CHANGE, MAP_MOVED, MARKER_CLICK } from '../actions/types';
+import { FETCH_LOCATIONS, CATEGORY_CHANGE, MAP_MOVED, MARKER_CLICK, MARKER_OVER, MARKER_OUT } from '../actions/types';
 
 export default (state = [],action) => {
   switch(action.type){
     case FETCH_LOCATIONS:
       var markers = [...action.payload.data.response.groups[0].items];
-      markers.forEach(function(marker,index){
-        marker.showInfo = false;
-        marker.index = index;
-        marker.infoContent = marker.venue.name;
-      })
-      return markers;
+      return markers.map((marker,index)=>{
+        return{
+          ...marker,
+          showInfo:false,
+          index:index,
+          isActive:false
+        }
+      });
     case CATEGORY_CHANGE:
       return[...action.payload.data.response.groups[0].items];
     case MAP_MOVED:
@@ -19,17 +21,45 @@ export default (state = [],action) => {
         if(marker.index == action.markerId){
           return {
             ...marker,
-            showInfo: true
+            showInfo: true,
+            isActive: true
           }
         }else if(marker.showInfo){
           return {
             ...marker,
-            showInfo: false
+            showInfo: false,
+            isActive: false
           }
         }else{
           return marker;
         }
       });
+      case MARKER_OVER:
+        return state.map(marker => {
+          if(marker.index == action.markerId){
+            return {
+              ...marker,
+              showInfo: true
+            }
+          }else if(marker.showInfo && !marker.isActive){
+            return {
+              ...marker,
+              showInfo: false
+            }
+          }else{
+            return marker;
+          }
+        });
+        case MARKER_OUT:
+          return state.map(marker => {
+            if(marker.isActive){
+              return marker;
+            }
+            return {
+              ...marker,
+              showInfo: false
+            }
+          });
     default:
       return state;
   }

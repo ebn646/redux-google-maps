@@ -1,5 +1,5 @@
 import React from 'react';
-import { MARKER_CLICK,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED } from './types';
+import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED } from './types';
 import axios from 'axios';
 
 const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/';
@@ -9,6 +9,20 @@ const secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
 export function onMarkerClicked(markerId){
   return {
     type: MARKER_CLICK,
+    markerId
+  }
+}
+
+export function onMarkerOver(markerId){
+  return {
+    type: MARKER_OVER,
+    markerId
+  }
+}
+
+export function onMarkerOut(markerId){
+  return {
+    type: MARKER_OUT,
     markerId
   }
 }

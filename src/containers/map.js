@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleMapLoader, withGoogleMap, GoogleMap, Marker , InfoWindow} from 'react-google-maps';
-//import GoogleMarker from '../components/marker';
-//import Venue from '../components/venue';
+import VenueInfo from '../components/venueInfo'
 import * as actionCreators from '../actions'
 
 const GoogleMapWrapper = withGoogleMap(props => (
@@ -35,10 +34,13 @@ const GoogleMapWrapper = withGoogleMap(props => (
       index={index}
       position={new google.maps.LatLng(marker.venue.location.lat, marker.venue.location.lng)}
       onClick={() => props.onMarkerClick(marker)}
+      onMouseOver={() => props.onMarkerOver(marker)}
+      onMouseOut={() => props.onMarkerOut(marker)}
+      isActive={false}
       showInfo={false}>
       {marker.showInfo && (
           <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
-            <div>{marker.infoContent}</div>
+            <VenueInfo info={marker}/>
           </InfoWindow>
         )}
     </Marker>
@@ -51,20 +53,25 @@ class Map extends Component{
     super(props)
     this.state={map:null,markers:[]}
   }
-  addMarker(venue){
-    console.log('fuck')
-  }
   handleMarkerClick(targetMarker){
     //console.log(targetMarker.index,'i was clicked')
      var clicked = this.props.onMarkerClicked(targetMarker.index)
+  }
+  handleMarkerOver(targetMarker){
+    console.log('handleMarkerOver')
+    var over = this.props.onMarkerOver(targetMarker.index)
+  }
+  handleMarkerOut(targetMarker){
+    console.log('handleMarkerOut')
+    var out = this.props.onMarkerOut(targetMarker.index)
+  }
+  handleMarkerClose(targetMarker){
+    console.log('handleMarkerOver')
   }
   componentWillUpdate(nextProps){
     if(nextProps.category != this.props.category){
       this.props.onMapMoved(this.props.category,this.state.map.getCenter())
     }
-  }
-  handleMarkerClose(targetMarker){
-
   }
   mapMoved(){
     this.props.onMapMoved(this.props.category,this.state.map.getCenter())
@@ -91,6 +98,8 @@ class Map extends Component{
         google={google}
         venues={this.props.venues || []}
         onMarkerClick={this.handleMarkerClick.bind(this)}
+        onMarkerOver={this.handleMarkerOver.bind(this)}
+        onMarkerOut={this.handleMarkerOut.bind(this)}
         onMarkerClose={this.handleMarkerClose.bind(this)}
         />
       </div>
