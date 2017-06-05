@@ -7,17 +7,8 @@ class List extends Component{
   constructor(props){
     super(props);
   }
-  //componentWillUpdate(nextProps){
-    // if(nextProps.category !== this.props.category){
-    //   //this.props.onFetchLocations(nextProps.category);
-    //   return true;
-    // }else{
-    //   return false;
-    // }
-     //console.log(nextProps.category.category)
-  //}
   handleMarkerClick(marker){
-    this.props.onMarkerClicked(marker);
+    this.props.onMarkerClicked(marker.props.index);
   }
   renderItem(venue,index){
       return(

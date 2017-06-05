@@ -7,16 +7,16 @@ export default class ListItem extends Component{
       this.state={'isSelected':''}
   }
   componentWillReceiveProps(nextProps){
-    var css = (this.state.isSelected === "") ? "selected" : "";
-    if(nextProps.activeMarkerIndex.props && nextProps.activeMarkerIndex.props.index == this.props.index){
-      this.setState({"isSelected":css});
-      return true;
-    }else if(this.state.isSelected == "selected"){
-      this.setState({"isSelected":""});
-      return true;
-    }else{
-      return false;
-    }
+    // var css = (this.state.isSelected === "") ? "selected" : "";
+    // if(nextProps.activeMarkerIndex.props && nextProps.activeMarkerIndex.props.index == this.props.index){
+    //   this.setState({"isSelected":css});
+    //   return true;
+    // }else if(this.state.isSelected == "selected"){
+    //   this.setState({"isSelected":""});
+    //   return true;
+    // }else{
+    //   return false;
+    // }
   }
   render(){
     const style = {

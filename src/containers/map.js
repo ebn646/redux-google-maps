@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { GoogleMapLoader, withGoogleMap, GoogleMap } from 'react-google-maps';
-import GoogleMarker from '../components/marker';
-//import GInfoWindow from './infowindow';
+import { GoogleMapLoader, withGoogleMap, GoogleMap, Marker , InfoWindow} from 'react-google-maps';
+//import GoogleMarker from '../components/marker';
+//import Venue from '../components/venue';
 import * as actionCreators from '../actions'
 
 const GoogleMapWrapper = withGoogleMap(props => (
@@ -28,13 +28,20 @@ const GoogleMapWrapper = withGoogleMap(props => (
     defaultZoom={17}
     onDragEnd={props.mapmoved}
     center={props.center}>
-  {props.markers.map((marker,index)=>(
-      <GoogleMarker
-        {...props}
-        key={index}
-        index={index}
-        position={marker.position}>
-    </GoogleMarker>
+  {props.venues.map((marker,index)=>(
+    <Marker
+      {...props}
+      key={index}
+      index={index}
+      position={new google.maps.LatLng(marker.venue.location.lat, marker.venue.location.lng)}
+      onClick={() => props.onMarkerClick(marker)}
+      showInfo={false}>
+      {marker.showInfo && (
+          <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
+            <div>{marker.infoContent}</div>
+          </InfoWindow>
+        )}
+    </Marker>
   ))}
  </GoogleMap>
 ));
@@ -44,15 +51,18 @@ class Map extends Component{
     super(props)
     this.state={map:null,markers:[]}
   }
+  addMarker(venue){
+    console.log('fuck')
+  }
   handleMarkerClick(targetMarker){
-     var clicked = this.props.onMarkerClicked(targetMarker)
+    //console.log(targetMarker.index,'i was clicked')
+     var clicked = this.props.onMarkerClicked(targetMarker.index)
   }
   componentWillUpdate(nextProps){
     if(nextProps.category != this.props.category){
       this.props.onMapMoved(this.props.category,this.state.map.getCenter())
     }
   }
-
   handleMarkerClose(targetMarker){
 
   }
@@ -69,18 +79,17 @@ class Map extends Component{
     }
   }
   render() {
-    //console.log('render map')
     return (
       <div>
         <GoogleMapWrapper
         {...this.props}
-        containerElement={<div style={{ height: `800px`, width:`100%` }} />}
+        containerElement={<div style={{ height: `850px`, width:`100%` }} />}
         mapElement={<div style={{ height: `100%`, width:`100%` }} />}
         center={this.props.center}
         mapmoved={this.mapMoved.bind(this)}
         maploaded={this.mapLoaded.bind(this)}
         google={google}
-        markers={this.props.venues || []}
+        venues={this.props.venues || []}
         onMarkerClick={this.handleMarkerClick.bind(this)}
         onMarkerClose={this.handleMarkerClose.bind(this)}
         />
@@ -88,13 +97,12 @@ class Map extends Component{
     );
   }
 }
-
 function mapStateToProps(state){
   return {
     venues: state.venues,
     activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
-    mapMoved: state.mapMoved
+    mapMoved: state.mapMoved,
   }
 }
 

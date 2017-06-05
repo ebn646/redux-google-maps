@@ -6,10 +6,10 @@ const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/';
 const id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
 const secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
 
-export function onMarkerClicked(marker){
+export function onMarkerClicked(markerId){
   return {
     type: MARKER_CLICK,
-    marker
+    markerId
   }
 }
 
