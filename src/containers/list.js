@@ -7,8 +7,17 @@ class List extends Component{
   constructor(props){
     super(props);
   }
+  // componentWillUpdate(nextProps){
+  //   console.log('list will update ',nextProps)
+  // }
   handleMarkerClick(marker){
-    this.props.onMarkerClicked(marker.props.index);
+    var clicked = this.props.onMarkerClicked(marker.props.index);
+  }
+  handleMarkerOver(markerId){
+    var active = this.props.onMarkerOver(markerId);
+  }
+  handleMarkerOut(){
+    var out = this.props.onMarkerOut('');
   }
   renderItem(venue,index){
       return(
@@ -17,6 +26,8 @@ class List extends Component{
         key={index}
         index={index}
         onMarkerClick={this.handleMarkerClick.bind(this)}
+        onMarkerOver={this.handleMarkerOver.bind(this)}
+        onMarkerOut={this.handleMarkerOut.bind(this)}
         data={venue}/>
       )
   }

@@ -23,7 +23,7 @@ export function onMarkerOver(markerId){
 export function onMarkerOut(markerId){
   return {
     type: MARKER_OUT,
-    markerId
+    markerId: markerId
   }
 }
 

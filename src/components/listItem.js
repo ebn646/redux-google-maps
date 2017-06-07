@@ -6,17 +6,21 @@ export default class ListItem extends Component{
       super(props)
       this.state={'isSelected':''}
   }
+  onItemOver(){
+    this.props.onMarkerOver(this.props.index);
+  }
+  onItemOut(){
+    this.props.onMarkerOut();
+  }
   componentWillReceiveProps(nextProps){
-    // var css = (this.state.isSelected === "") ? "selected" : "";
-    // if(nextProps.activeMarkerIndex.props && nextProps.activeMarkerIndex.props.index == this.props.index){
-    //   this.setState({"isSelected":css});
-    //   return true;
-    // }else if(this.state.isSelected == "selected"){
-    //   this.setState({"isSelected":""});
-    //   return true;
-    // }else{
-    //   return false;
-    // }
+    if(nextProps.activeMarkerIndex == this.props.index){
+      if(this.state.isSelected == ""){
+        this.setState({"isSelected":"selected"});
+      }
+    }
+    if(nextProps.activeMarkerIndex == -1){
+        this.setState({"isSelected":""});
+    }
   }
   render(){
     const style = {
@@ -30,6 +34,8 @@ export default class ListItem extends Component{
     return(
         <li
           onClick={()=>this.props.onMarkerClick(this)}
+          onMouseEnter={this.onItemOver.bind(this)}
+          onMouseLeave={this.onItemOut.bind(this)}
           className={this.state.isSelected}
           style={style}>
           <div className="col-sm-3">

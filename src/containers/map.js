@@ -58,11 +58,11 @@ class Map extends Component{
      var clicked = this.props.onMarkerClicked(targetMarker.index)
   }
   handleMarkerOver(targetMarker){
-    console.log('handleMarkerOver')
+    //console.log('handleMarkerOver')
     var over = this.props.onMarkerOver(targetMarker.index)
   }
   handleMarkerOut(targetMarker){
-    console.log('handleMarkerOut')
+    //console.log('handleMarkerOut')
     var out = this.props.onMarkerOut(targetMarker.index)
   }
   handleMarkerClose(targetMarker){

@@ -3,7 +3,10 @@ import React,{Component} from 'react';
 class VenueInfo extends Component{
   render(){
     return(
-      <div>{this.props.info.venue.name}</div>
+      <div>
+          <span>{this.props.info.index + 1}. </span>
+          <span>{this.props.info.venue.name}</span>
+      </div>
     )
   }
 }
