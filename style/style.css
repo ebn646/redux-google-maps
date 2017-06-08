@@ -36,9 +36,9 @@ body{
 .venue-list li:nth-child(odd){
   background: #e5e5e5;
 }
-/*.venue-list li:nth-child(odd):hover{
+.venue-list li:nth-child(odd):hover{
   background: #f7ecd6;
-}*/
+}
 .venue-list li.selected{
     background: #f7ecd6;
 }

@@ -13,8 +13,8 @@ class App extends Component {
     super(props)
     this.state={
       center:{
-        lat: 30.26715,
-        lng: -97.74306,
+        lat: 40.722938,
+        lng: -74.007821,
       },
     }
   }

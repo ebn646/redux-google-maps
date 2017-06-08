@@ -33,7 +33,7 @@ export function onFetchLocations(category){
     const url = ROOT_URL
     +'?v=20131124'
     +'&ll='
-    +'30.26715,-97.74306'
+    +'40.722938,-74.007821'
     +'&query='
     +query
     +'&client_id='
@@ -51,6 +51,7 @@ export function onFetchLocations(category){
 }
 
 export function onCategoryChange(category){
+  console.log('onCategoryChange')
   if(category == undefined)category = 'food';
   const query = category;
   const url = ROOT_URL

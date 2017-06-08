@@ -7,9 +7,6 @@ class List extends Component{
   constructor(props){
     super(props);
   }
-  // componentWillUpdate(nextProps){
-  //   console.log('list will update ',nextProps)
-  // }
   handleMarkerClick(marker){
     var clicked = this.props.onMarkerClicked(marker.props.index);
   }
@@ -25,6 +22,7 @@ class List extends Component{
         {...this.props}
         key={index}
         index={index}
+        isActive={false}
         onMarkerClick={this.handleMarkerClick.bind(this)}
         onMarkerOver={this.handleMarkerOver.bind(this)}
         onMarkerOut={this.handleMarkerOut.bind(this)}
@@ -35,7 +33,7 @@ class List extends Component{
     const venues = this.props.venues || [];
       return(
         <div>
-          <p style={{padding:'10px 10px 0 10px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>Austin</strong></p>
+          <p style={{padding:'10px 10px 0 10px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>{this.props.location}</strong></p>
           <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
         </div>
       )
@@ -46,6 +44,7 @@ function mapStateToProps(state){
   return{
     activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
+    location:state.location,
     city: state.city
   }
 }

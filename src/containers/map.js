@@ -54,16 +54,16 @@ class Map extends Component{
     this.state={map:null,markers:[]}
   }
   handleMarkerClick(targetMarker){
-    //console.log(targetMarker.index,'i was clicked')
      var clicked = this.props.onMarkerClicked(targetMarker.index)
   }
   handleMarkerOver(targetMarker){
-    //console.log('handleMarkerOver')
     var over = this.props.onMarkerOver(targetMarker.index)
   }
   handleMarkerOut(targetMarker){
-    //console.log('handleMarkerOut')
-    var out = this.props.onMarkerOut(targetMarker.index)
+    console.log(targetMarker.isActive)
+    if(!targetMarker.isActive){
+        var out = this.props.onMarkerOut(targetMarker.index)
+    }
   }
   handleMarkerClose(targetMarker){
     console.log('handleMarkerOver')

@@ -14,11 +14,10 @@ export default class ListItem extends Component{
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.activeMarkerIndex == this.props.index){
-      if(this.state.isSelected == ""){
         this.setState({"isSelected":"selected"});
-      }
     }
-    if(nextProps.activeMarkerIndex == -1){
+    if(nextProps.activeMarkerIndex == -1
+        || nextProps.activeMarkerIndex != this.props.index){
         this.setState({"isSelected":""});
     }
   }
@@ -49,7 +48,7 @@ export default class ListItem extends Component{
             <p>{this.props.data.venue.location.address}</p>
             <p>{this.props.data.venue.location.city}, {this.props.data.venue.location.state}</p>
           </div>
-          <div className="col-sm-1">{this.props.data.venue.rating}</div>
+          <div className="col-sm-1" style={{background:'#00b551',borderRadius:'30px'}}>{this.props.data.venue.rating}</div>
         </li>
     )
   }
