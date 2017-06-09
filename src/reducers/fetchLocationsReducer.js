@@ -1,4 +1,4 @@
-import { FETCH_LOCATIONS, CATEGORY_CHANGE, MAP_MOVED, MARKER_CLICK, MARKER_OVER, MARKER_OUT } from '../actions/types';
+import { FETCH_LOCATIONS, CATEGORY_CHANGE, MAP_MOVED, MARKER_CLICK, MARKER_OVER, MARKER_OUT,LOCATION_CHANGE } from '../actions/types';
 
 export default (state = [],action) => {
   switch(action.type){
@@ -12,6 +12,16 @@ export default (state = [],action) => {
           isActive:false
         }
       });
+      case LOCATION_CHANGE:
+        var markers = [...action.payload.data.response.groups[0].items];
+        return markers.map((marker,index)=>{
+          return{
+            ...marker,
+            showInfo:false,
+            index:index,
+            isActive:false
+          }
+        });
     case CATEGORY_CHANGE:
       return[...action.payload.data.response.groups[0].items];
     case MAP_MOVED:

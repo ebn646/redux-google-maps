@@ -24,7 +24,7 @@ const GoogleMapWrapper = withGoogleMap(props => (
       ]
     }}
     ref={props.maploaded}
-    defaultZoom={17}
+    defaultZoom={14}
     onDragEnd={props.mapmoved}
     center={props.center}>
   {props.venues.map((marker,index)=>(
@@ -68,13 +68,17 @@ class Map extends Component{
   handleMarkerClose(targetMarker){
     console.log('handleMarkerOver')
   }
-  componentWillUpdate(nextProps){
-    if(nextProps.category != this.props.category){
-      this.props.onMapMoved(this.props.category,this.state.map.getCenter())
-    }
-  }
+  // componentWillUpdate(nextProps){
+  //   if(nextProps.category != this.props.category){
+  //     this.props.onMapMoved(this.props.category,this.state.map.getCenter())
+  //   }
+  // }
+  // componentWillReceiveProps(nextProps){
+  //   console.log(nextProps.latlng,this.state.map);
+  // }
   mapMoved(){
-    this.props.onMapMoved(this.props.category,this.state.map.getCenter())
+    console.log('the map has moved')
+    //this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
   mapLoaded(map){
     if(this.state.map != null){
@@ -112,6 +116,7 @@ function mapStateToProps(state){
     activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
     mapMoved: state.mapMoved,
+    latlng: state.latlng
   }
 }
 

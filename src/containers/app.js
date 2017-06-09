@@ -24,9 +24,14 @@ class App extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.category !== this.props.category){
       this.props.onFetchLocations(nextProps.category);
-      return true;
-    }else{
-      return false;
+    }
+    if(nextProps.latlng !== this.props.latlng){
+      this.setState({
+        center:{
+          lat: nextProps.latlng.lat,
+          lng: nextProps.latlng.lng,
+        },
+      })
     }
   }
   render() {
@@ -52,7 +57,8 @@ class App extends Component {
 function mapStateToProps(state){
    return{
      venues: state.venues,
-     category: state.category
+     category: state.category,
+     latlng: state.latlng
    }
 }
 

@@ -45,7 +45,6 @@ function mapStateToProps(state){
     activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
     location:state.location,
-    city: state.city
   }
 }
 

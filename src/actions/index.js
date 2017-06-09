@@ -1,5 +1,5 @@
 import React from 'react';
-import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED } from './types';
+import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED,LOCATION_CHANGE,LATLNG_CHANGE } from './types';
 import axios from 'axios';
 
 const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/';
@@ -49,9 +49,37 @@ export function onFetchLocations(category){
       payload: request
     };
 }
+export function onZipCodeChanged(obj){
+  //if(category == undefined)category = 'food';
+  const query = 'food';
+  const url = ROOT_URL
+  +'?v=20131124'
+  +'&ll='
+  +obj.lat.toString()+','+obj.lng.toString()
+  +'&query='
+  +query
+  +'&client_id='
+  +id
+  +'&client_secret='
+  +secret
+  +'&venuePhotos=1';
+  const request = axios.get(url);
+
+  return{
+    type: LOCATION_CHANGE,
+    payload: request,
+  }
+}
+
+export function onLatLngChange(obj){
+  return {
+    type: LATLNG_CHANGE,
+    obj
+  }
+}
 
 export function onCategoryChange(category){
-  console.log('onCategoryChange')
+  console.log('onCategoryChange',1)
   if(category == undefined)category = 'food';
   const query = category;
   const url = ROOT_URL
@@ -65,6 +93,7 @@ export function onCategoryChange(category){
   +'&client_secret='
   +secret
   +'&venuePhotos=1';
+  console.log('onCategoryChange',2)
 
   const request = axios.get(url);
 
@@ -74,7 +103,7 @@ export function onCategoryChange(category){
   }
 }
 
-export function onMapMoved(category,center){
+export function onMapMoved(obj){
   if(category == undefined)category = 'food';
   var NewMapCenter = center;
   var latitude = NewMapCenter.lat();
