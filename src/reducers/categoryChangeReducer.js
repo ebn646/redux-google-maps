@@ -4,7 +4,7 @@ var initialState = {
 	category: 'food',
 }
 
-export default function(state = 'food', action){
+export default function(state = initialState.category, action){
   switch (action.type) {
       case CATEGORY_CHANGE:
     	return {

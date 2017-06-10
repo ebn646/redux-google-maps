@@ -24,21 +24,12 @@ class Header extends Component{
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
       .then(({ lat, lng }) => {
-        console.log('Success Yay', { lat, lng },this.props)
-        // this.setState({
-        //   geocodeResults: this.renderGeocodeSuccess(lat, lng),
-        //   loading: false
-        // })
-
+        console.log('Success Yay', { lat, lng },this.props);
         this.props.onZipCodeChanged({ lat, lng });
-        this.props.onLatLngChange({ lat, lng })
+        this.props.onLatLngChange({ lat, lng });
       })
       .catch((error) => {
         console.log('Oh no!', error)
-        // this.setState({
-        //   geocodeResults: this.renderGeocodeFailure(error),
-        //   loading: false
-        // })
       })
   }
   renderGeocodeFailure(err) {
@@ -85,11 +76,11 @@ class Header extends Component{
         id: "my-input-id",
     }
     return (
-      <div className="page-header row" style={{background:'#222'}}>
-          <div className="col-sm-2">
-              <h4 style={{display:'inline-block'}}>FOURSQUARE</h4>
+      <div className="page-header row">
+          <div className="col-sm-1">
+              <h4 style={{display:'inline-block'}}><img src="images/foursquare.png"/></h4>
           </div>
-          <div className="col-sm-3 col-left" style={{textAlign:'left',color:"#333"}}>
+          <div className="col-sm-4 col-left" style={{textAlign:'left',color:"#333"}}>
             <PlacesAutocomplete
               onSelect={this.handleSelect}
               autocompleteItem={AutocompleteItem}

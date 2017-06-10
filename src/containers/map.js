@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleMapLoader, withGoogleMap, GoogleMap, Marker , InfoWindow} from 'react-google-maps';
-import VenueInfo from '../components/venueInfo';
+import VenueInfoWindow from '../components/venueInfo';
 import * as actionCreators from '../actions';
 require ('../../style/map.scss');
 
@@ -25,7 +25,7 @@ const GoogleMapWrapper = withGoogleMap(props => (
       ]
     }}
     ref={props.maploaded}
-    defaultZoom={14}
+    defaultZoom={15}
     onDragEnd={props.mapmoved}
     center={props.center}>
   {props.venues.map((marker,index)=>(
@@ -41,7 +41,7 @@ const GoogleMapWrapper = withGoogleMap(props => (
       showInfo={false}>
       {marker.showInfo && (
           <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
-            <VenueInfo info={marker}/>
+            <VenueInfoWindow info={marker}/>
           </InfoWindow>
         )}
     </Marker>
@@ -67,16 +67,8 @@ class Map extends Component{
     }
   }
   handleMarkerClose(targetMarker){
-    console.log('handleMarkerOver')
+    var clicked = this.props.onMarkerClicked(-1);
   }
-  // componentWillUpdate(nextProps){
-  //   if(nextProps.category != this.props.category){
-  //     this.props.onMapMoved(this.props.category,this.state.map.getCenter())
-  //   }
-  // }
-  // componentWillReceiveProps(nextProps){
-  //   console.log(nextProps.latlng,this.state.map);
-  // }
   mapMoved(){
     console.log('the map has moved')
     //this.props.onMapMoved(this.props.category,this.state.map.getCenter())
@@ -95,7 +87,7 @@ class Map extends Component{
       <div>
         <GoogleMapWrapper
         {...this.props}
-        containerElement={<div style={{ height: `850px`, width:`100%` }} />}
+        containerElement={<div style={{ height: `900px`, width:`100%` }} />}
         mapElement={<div style={{ height: `100%`, width:`100%` }} />}
         center={this.props.center}
         mapmoved={this.mapMoved.bind(this)}

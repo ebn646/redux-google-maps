@@ -3,6 +3,7 @@
   width:100%;
   z-index:2;
   margin:0;
+  border-bottom:1px solid #CCC;
   >*{
     padding-top:10px;
   }
@@ -20,6 +21,5 @@
   }
   .col-right{
     text-align: right;
-    //border:1px solid green;
   }
 }

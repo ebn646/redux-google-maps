@@ -23,25 +23,6 @@ body{
   cursor: pointer;
 }
 
-.venue-list li:hover,
-.dropdown li:hover{
-  background: #f7ecd6;
-}
-.venue-list li{
-  background: #f5f5f5;
-}
-.venue-list li p{
-  margin: 0;
-}
-.venue-list li:nth-child(odd){
-  background: #e5e5e5;
-}
-.venue-list li:nth-child(odd):hover{
-  background: #f7ecd6;
-}
-.venue-list li.selected{
-    background: #f7ecd6;
-}
 
 img{
   max-width: 100%;

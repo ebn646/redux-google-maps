@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router';
 
+
 export default class ListItem extends Component{
   constructor(props){
       super(props)
@@ -45,10 +46,12 @@ export default class ListItem extends Component{
               <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
             </a>
             <small>{this.props.data.venue.categories[0].name}</small>
-            <p>{this.props.data.venue.location.address}</p>
-            <p>{this.props.data.venue.location.city}, {this.props.data.venue.location.state}</p>
+            <p>
+              {this.props.data.venue.location.address}
+              {this.props.data.venue.location.city}, {this.props.data.venue.location.state}
+          </p>
           </div>
-          <div className="col-sm-1" style={{background:'#00b551',borderRadius:'5px',padding:0,textAlign:'center'}}>{this.props.data.venue.rating}</div>
+          <div className="col-sm-1 rating">{this.props.data.venue.rating}</div>
         </li>
     )
   }
