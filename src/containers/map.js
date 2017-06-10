@@ -1,8 +1,9 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { GoogleMapLoader, withGoogleMap, GoogleMap, Marker , InfoWindow} from 'react-google-maps';
-import VenueInfo from '../components/venueInfo'
-import * as actionCreators from '../actions'
+import VenueInfo from '../components/venueInfo';
+import * as actionCreators from '../actions';
+require ('../../style/map.scss');
 
 const GoogleMapWrapper = withGoogleMap(props => (
   <GoogleMap

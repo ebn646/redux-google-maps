@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import DropDown from '../containers/dropdown-list'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from '../helpers';
+require('../../style/header.scss');
 
 class Header extends Component{
   constructor(props){
@@ -85,22 +86,22 @@ class Header extends Component{
     }
     return (
       <div className="page-header row" style={{background:'#222'}}>
-        <div className="col-sm-3" style={{textAlign:'left',color:"#333"}}>
-          <h4 style={{display:'inline-block'}}>FOURSQUARE</h4>
-            <div className='container'>
-          <PlacesAutocomplete
-            onSelect={this.handleSelect}
-            autocompleteItem={AutocompleteItem}
-            onEnterKeyDown={this.handleSelect}
-            classNames={cssClasses}
-            inputProps={inputProps}
-          />
-          {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
-          {!this.state.loading && this.state.geocodeResults ?
-            <div className='geocoding-results'>{this.state.geocodeResults}</div> : null}
-        </div>
-        </div>
-        <div className="col-sm-9" style={{textAlign:'center'}}>
+          <div className="col-sm-2">
+              <h4 style={{display:'inline-block'}}>FOURSQUARE</h4>
+          </div>
+          <div className="col-sm-3 col-left" style={{textAlign:'left',color:"#333"}}>
+            <PlacesAutocomplete
+              onSelect={this.handleSelect}
+              autocompleteItem={AutocompleteItem}
+              onEnterKeyDown={this.handleSelect}
+              classNames={cssClasses}
+              inputProps={inputProps}
+            />
+            {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
+            {!this.state.loading && this.state.geocodeResults ?
+              <div className='geocoding-results'>{this.state.geocodeResults}</div> : null}
+          </div>
+        <div className="col-sm-7 col-right">
             <img className="App-logo" src="images/logo.svg" />
         </div>
       </div>

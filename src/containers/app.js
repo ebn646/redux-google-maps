@@ -39,11 +39,11 @@ class App extends Component {
       <div>
         <Header
           {...this.props}/>
-        <div style={{width:'35%',float:'left'}}>
+        <div className="list-holder" style={{width:'35%',float:'left'}}>
           <List
             {...this.props}/>
         </div>
-        <div style={{width:'65%',float:'left'}}>
+        <div className="map-holder" style={{width: "65%",float: "left"}}>
           <Map
             {...this.props}
             center={this.state.center}/>

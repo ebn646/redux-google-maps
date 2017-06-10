@@ -12,9 +12,7 @@ import defaultStyles from './defaultStyles'
 class PlacesAutocomplete extends Component {
   constructor(props) {
     super(props)
-
     this.state = { autocompleteItems: [] }
-
     this.autocompleteCallback = this.autocompleteCallback.bind(this)
     this.handleInputKeyDown = this.handleInputKeyDown.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)

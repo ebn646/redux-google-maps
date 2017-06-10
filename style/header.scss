@@ -1,0 +1,25 @@
+.page-header{
+  position:absolute;
+  width:100%;
+  z-index:2;
+  margin:0;
+  >*{
+    padding-top:10px;
+  }
+  .col-left{
+    h4{
+      display:inline-block;
+    }
+    .form-group{
+      width:400px;
+      display:inline-block;
+      input{
+        width:100%;
+      }
+    }
+  }
+  .col-right{
+    text-align: right;
+    //border:1px solid green;
+  }
+}

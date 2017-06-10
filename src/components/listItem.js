@@ -48,7 +48,7 @@ export default class ListItem extends Component{
             <p>{this.props.data.venue.location.address}</p>
             <p>{this.props.data.venue.location.city}, {this.props.data.venue.location.state}</p>
           </div>
-          <div className="col-sm-1" style={{background:'#00b551',borderRadius:'15px'}}>{this.props.data.venue.rating}</div>
+          <div className="col-sm-1" style={{background:'#00b551',borderRadius:'5px',padding:0,textAlign:'center'}}>{this.props.data.venue.rating}</div>
         </li>
     )
   }
