@@ -87,7 +87,7 @@ class Map extends Component{
       <div>
         <GoogleMapWrapper
         {...this.props}
-        containerElement={<div style={{ height: `900px`, width:`100%` }} />}
+        containerElement={<div style={{ height: `100vh`, width:`100%` }} />}
         mapElement={<div style={{ height: `100%`, width:`100%` }} />}
         center={this.props.center}
         mapmoved={this.mapMoved.bind(this)}

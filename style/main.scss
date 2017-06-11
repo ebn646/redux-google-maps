@@ -1,4 +1,18 @@
+.no-padd{
+  padding:0;
+}
+.main-container{
+  position: relative;
+  top: 116px;
+  @media(min-width:768px){
+    top: 56px;
+  }
+}
 .app{
    background:#e5e5e5;
    overflow: hidden;
+}
+
+.footer{
+  margin:0;
 }

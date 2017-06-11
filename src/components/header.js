@@ -76,11 +76,11 @@ class Header extends Component{
         id: "my-input-id",
     }
     return (
-      <div className="page-header row">
-          <div className="col-sm-1">
+      <div className="page-header row" style={{color:"#333"}}>
+          <div className="col-md-1">
               <h4 style={{display:'inline-block'}}><img src="images/foursquare.png"/></h4>
           </div>
-          <div className="col-sm-4 col-left" style={{textAlign:'left',color:"#333"}}>
+          <div className="col-md-4 col-left" style={{textAlign:'left'}}>
             <PlacesAutocomplete
               onSelect={this.handleSelect}
               autocompleteItem={AutocompleteItem}
@@ -92,7 +92,7 @@ class Header extends Component{
             {!this.state.loading && this.state.geocodeResults ?
               <div className='geocoding-results'>{this.state.geocodeResults}</div> : null}
           </div>
-        <div className="col-sm-7 col-right">
+        <div className="col-md-7">
             <img className="App-logo" src="images/logo.svg" />
         </div>
       </div>

@@ -33,9 +33,9 @@ class List extends Component{
   render(){
     const venues = this.props.venues || [];
       return(
-        <div>
-          <p style={{padding:'10px 10px 0 10px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>{this.props.location}</strong></p>
-          <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"800px", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
+        <div style={{height:'100vh'}}>
+          <p style={{padding:'10px 10px 10px 30px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>{this.props.location}</strong></p>
+          <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"100%", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
         </div>
       )
   }

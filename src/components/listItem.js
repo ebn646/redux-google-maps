@@ -1,7 +1,6 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router';
 
-
 export default class ListItem extends Component{
   constructor(props){
       super(props)
@@ -51,7 +50,7 @@ export default class ListItem extends Component{
               {this.props.data.venue.location.city}, {this.props.data.venue.location.state}
           </p>
           </div>
-          <div className="col-sm-1 rating">{this.props.data.venue.rating}</div>
+          <div className="col-xs-1 rating">{this.props.data.venue.rating}</div>
         </li>
     )
   }

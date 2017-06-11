@@ -37,18 +37,24 @@ class App extends Component {
   render() {
     return (
       <div className="app" style={{background:'#f5f5f5'}}>
-        <Header
-          {...this.props}/>
-        <div className="list-holder" style={{width:'35%',float:'left'}}>
-          <List
+        <div className="row" >
+          <Header
             {...this.props}/>
         </div>
-        <div className="map-holder" style={{width: "65%",float: "left"}}>
-          <Map
-            {...this.props}
-            center={this.state.center}/>
+        <div className="row main-container" >
+          <div className="map-holder" className="col-md-8 col-md-push-4 no-padd">
+            <Map
+              {...this.props}
+              center={this.state.center}/>
+          </div>
+          <div className="list-holder" className="col-md-4 col-md-pull-8 no-padd">
+            <List
+              {...this.props}/>
+          </div>
         </div>
-        <Footer />
+        <div className="row footer" >
+          <Footer />
+        </div>
       </div>
     );
   }

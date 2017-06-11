@@ -1,5 +1,5 @@
 .page-header{
-  position:absolute;
+  position: absolute;
   width:100%;
   z-index:2;
   margin:0;
@@ -19,7 +19,11 @@
       }
     }
   }
-  .col-right{
-    text-align: right;
+  .App-logo{
+    display:none;
+    float:right;
+    @media(min-width: 768px){
+      display:block;
+    }
   }
 }

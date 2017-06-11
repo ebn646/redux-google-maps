@@ -2,9 +2,13 @@ import React,{Component} from 'react';
 require('../../style/infowindow.scss');
 
 class VenueInfoWindow extends Component{
+  constructor(props){
+    super(props)
+  }
   componentDidMount(){
     // Reference to the DIV that wraps the bottom of infowindow
       var iwOuter = $('.gm-style-iw');
+      iwOuter.addClass('active');
       var iwBackground = iwOuter.prev();
       //
       // // Removes background shadow DIV

@@ -57,7 +57,6 @@ class PlacesAutocomplete extends Component {
       }))
     })
   }
-
   fetchPredictions() {
     const { value } = this.props.inputProps
     if (value.length) {
