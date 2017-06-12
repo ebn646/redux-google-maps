@@ -19,10 +19,14 @@
       }
     }
   }
-  .App-logo{
+  .logo-holder{
     display:none;
-    float:right;
-    @media(min-width: 768px){
+    position: absolute;
+    top: 25%;
+    left:50%;
+    margin-right:-50%;
+    transform: translate(-50%, -25%);
+    @media(min-width: 1220px){
       display:block;
     }
   }

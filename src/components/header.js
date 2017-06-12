@@ -92,7 +92,7 @@ class Header extends Component{
             {!this.state.loading && this.state.geocodeResults ?
               <div className='geocoding-results'>{this.state.geocodeResults}</div> : null}
           </div>
-        <div className="col-md-7">
+        <div className="logo-holder">
             <img className="App-logo" src="images/logo.svg" />
         </div>
       </div>

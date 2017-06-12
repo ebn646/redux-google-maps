@@ -1,5 +1,5 @@
 import React from 'react';
-import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED,LOCATION_CHANGE,LATLNG_CHANGE } from './types';
+import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED,LOCATION_CHANGE,LATLNG_CHANGE,WINDOW_RESIZE } from './types';
 import axios from 'axios';
 
 const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/';
@@ -125,5 +125,13 @@ export function onMapMoved(obj){
   return{
     type: MAP_MOVED,
     payload: request
+  }
+}
+
+export function onWindowResize(){
+  console.log('window has resized')
+
+  return{
+    type: WINDOW_RESIZE
   }
 }

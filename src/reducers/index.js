@@ -3,7 +3,8 @@ import categoryReducer from './categoryChangeReducer';
 import fetchLocationsReducer from './fetchLocationsReducer';
 import getCityReducer from './getCityReducer';
 import getLatLngReducer from './getLatLngReducer';
-import activeMarkerIndexReducer from './activeMarkerIndexReducer'
+import activeMarkerIndexReducer from './activeMarkerIndexReducer';
+import windowResizeReducer from './windowResizeReducer';
 import { Map } from 'immutable';
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   venues: fetchLocationsReducer,
   category: categoryReducer,
   location: getCityReducer,
-  latlng: getLatLngReducer
+  latlng: getLatLngReducer,
+  mapCenter: windowResizeReducer
 });
 
 export default rootReducer;

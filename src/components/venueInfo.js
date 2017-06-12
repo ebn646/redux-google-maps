@@ -6,11 +6,11 @@ class VenueInfoWindow extends Component{
     super(props)
   }
   componentDidMount(){
+    console.log('infowindow');
+
     // Reference to the DIV that wraps the bottom of infowindow
       var iwOuter = $('.gm-style-iw');
-      iwOuter.addClass('active');
       var iwBackground = iwOuter.prev();
-      //
       // // Removes background shadow DIV
       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
       //
@@ -18,13 +18,13 @@ class VenueInfoWindow extends Component{
       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
       //
       // // Moves the infowindow 115px to the right.
-      // iwOuter.parent().parent().css({left: '115px'});
+      //iwOuter.parent().parent().css({left: '115px'});
       //
       // // Moves the shadow of the arrow 76px to the left margin.
-      // iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+      iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
       //
       // // Moves the arrow 76px to the left margin.
-      // iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+      //iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
       //
       // // Changes the desired tail shadow color.
       // iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
@@ -33,7 +33,7 @@ class VenueInfoWindow extends Component{
        var iwCloseBtn = iwOuter.next();
       //
       // // Apply the desired effect to the close button
-      iwCloseBtn.css({opacity: '1', right: '45px', top: '3px', border: '10px solid #fff', 'border-radius': '13px'});
+      iwCloseBtn.css({opacity: '1', right: '25px', top: '3px', border: '10px solid #fff', 'border-radius': '13px'});
       //iwCloseBtn.css({opacity: '1', right: '45px', top: '3px', 'box-shadow': '0 0 5px #3990B9'});
       //
       // // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
@@ -45,6 +45,7 @@ class VenueInfoWindow extends Component{
       iwCloseBtn.mouseout(function(){
         $(this).css({opacity: '1'});
       });
+      iwOuter.addClass('active');
   }
   render(){
     return(
