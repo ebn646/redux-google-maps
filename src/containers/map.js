@@ -62,6 +62,7 @@ class Map extends Component{
     if(this.state.map == null){
       return
     }else{
+
       this.mapMoved();
     }
  }
@@ -81,7 +82,8 @@ class Map extends Component{
     var clicked = this.props.onMarkerClicked(-1);
   }
   mapMoved(){
-    console.log('the map has moved',this.state.map.getCenter())
+    console.log('the map has moved',this.state.map.controlledPropUpdaterMap)
+    //this.state.map.center(this.state.map,this.state.map.getCenter())
     //this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
   onResize(){
@@ -102,7 +104,7 @@ class Map extends Component{
       <div>
         <GoogleMapWrapper
         {...this.props}
-        containerElement={<div style={{ height: `100vh`, width:`100%` }} />}
+        containerElement={<div id="map-container" style={{ height: "calc(100vh - 100px)", width:`100%` }} />}
         mapElement={<div id='map' style={{ height: `100%`, width:`100%` }} />}
         center={this.props.center}
         mapmoved={this.mapMoved.bind(this)}

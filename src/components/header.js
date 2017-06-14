@@ -25,8 +25,8 @@ class Header extends Component{
       .then((results) => getLatLng(results[0]))
       .then(({ lat, lng }) => {
         console.log('Success Yay', { lat, lng },this.props);
-        this.props.onZipCodeChanged({ lat, lng });
         this.props.onLatLngChange({ lat, lng });
+        this.props.onZipCodeChanged({ lat, lng });
       })
       .catch((error) => {
         console.log('Oh no!', error)
