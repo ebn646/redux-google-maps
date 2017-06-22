@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Map from './map';
 import List from './list';
 import Header from '../components/header';
@@ -16,6 +17,7 @@ class App extends Component {
         lat: 40.722938,
         lng: -74.007821,
       },
+      zoom:16
     }
   }
   componentWillMount(){
@@ -45,6 +47,7 @@ class App extends Component {
           <div className="map-holder" className="col-md-8 col-md-push-4 no-padd">
             <Map
               {...this.props}
+              zoom={this.state.zoom}
               center={this.state.center}/>
           </div>
           <div className="list-holder" className="col-md-4 col-md-pull-8 no-padd">

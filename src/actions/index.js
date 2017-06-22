@@ -102,36 +102,3 @@ export function onCategoryChange(category){
     payload: request,
   }
 }
-
-export function onMapMoved(obj){
-  if(category == undefined)category = 'food';
-  var NewMapCenter = center;
-  var latitude = NewMapCenter.lat();
-  var longitude = NewMapCenter.lng();
-  const query = category;
-  const url = ROOT_URL
-  +'?v=20131124'
-  +'&ll='
-  +latitude+','+ longitude
-  +'&query='
-  +query
-  +'&client_id='
-  +id
-  +'&client_secret='
-  +secret
-  +'&venuePhotos=1';
-
-  const request = axios.get(url);
-  return{
-    type: MAP_MOVED,
-    payload: request
-  }
-}
-
-export function onWindowResize(){
-  console.log('window has resized')
-
-  return{
-    type: WINDOW_RESIZE
-  }
-}

@@ -41,9 +41,7 @@ export default class ListItem extends Component{
             <img src={this.props.data.venue.featuredPhotos.items[0].prefix +'100x100' + this.props.data.venue.featuredPhotos.items[0].suffix} />
           </div>
           <div className="col-sm-8">
-            <a href={this.props.data.venue.url} target="_blank">
               <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
-            </a>
             <small>{this.props.data.venue.categories[0].name}</small>
             <p>
               {this.props.data.venue.location.address}

@@ -1,53 +1,11 @@
 import React,{ Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { GoogleMapLoader, withGoogleMap, GoogleMap, Marker , InfoWindow} from 'react-google-maps';
+import GoogleMap from 'google-map-react';
 import VenueInfoWindow from '../components/venueInfo';
+import MyGreatPlace from '../components/place.js';
 import * as actionCreators from '../actions';
 require ('../../style/map.scss');
-
-const GoogleMapWrapper = withGoogleMap(props => (
-  <GoogleMap
-    defaultOptions={{
-      scrollwheel: false,
-      mapTypeId: 'roadmap',
-      mapTypeControl: false,
-      streetViewControl: false,
-      styles:[
-        {
-          featureType: 'poi',
-          stylers: [{visibility: 'off'}]
-        },
-        {
-          featureType: 'transit',
-          elementType: 'labels.icon',
-          stylers: [{visibility: 'off'}]
-        },
-      ]
-    }}
-    ref={props.maploaded}
-    defaultZoom={15}
-    onDragEnd={props.mapmoved}
-    center={props.center}>
-  {props.venues.map((marker,index)=>(
-    <Marker
-      {...props}
-      key={index}
-      index={index}
-      position={new google.maps.LatLng(marker.venue.location.lat, marker.venue.location.lng)}
-      onClick={() => props.onMarkerClick(marker)}
-      onMouseOver={() => props.onMarkerOver(marker)}
-      onMouseOut={() => props.onMarkerOut(marker)}
-      isActive={false}
-      showInfo={false}>
-      {marker.showInfo && (
-          <InfoWindow onCloseClick={() => props.onMarkerClose(marker)}>
-            <VenueInfoWindow info={marker}/>
-          </InfoWindow>
-        )}
-    </Marker>
-  ))}
- </GoogleMap>
-));
 
 class Map extends Component{
   constructor(props){
@@ -62,7 +20,6 @@ class Map extends Component{
     if(this.state.map == null){
       return
     }else{
-
       this.mapMoved();
     }
  }
@@ -70,6 +27,7 @@ class Map extends Component{
      var clicked = this.props.onMarkerClicked(targetMarker.index)
   }
   handleMarkerOver(targetMarker){
+    console.log('markerOver')
     var over = this.props.onMarkerOver(targetMarker.index)
   }
   handleMarkerOut(targetMarker){
@@ -99,23 +57,28 @@ class Map extends Component{
       })
     }
   }
+  componentWillReceiveProps(nextProps){
+    //console.log(this.props.activeMarkerIndex)
+  }
+  renderMarker(marker,index){
+      return <MyGreatPlace
+        data={marker}
+        key={index}
+        lat={marker.venue.location.lat}
+        lng={marker.venue.location.lng}
+        text={index}
+      />
+  }
   render() {
+    const Markers = this.props.venues.map((marker,index) => this.renderMarker(marker,String(index+1)));
     return (
-      <div>
-        <GoogleMapWrapper
-        {...this.props}
-        containerElement={<div id="map-container" style={{ height: "calc(100vh - 100px)", width:`100%` }} />}
-        mapElement={<div id='map' style={{ height: `100%`, width:`100%` }} />}
-        center={this.props.center}
-        mapmoved={this.mapMoved.bind(this)}
-        maploaded={this.mapLoaded.bind(this)}
-        google={google}
-        venues={this.props.venues || []}
-        onMarkerClick={this.handleMarkerClick.bind(this)}
-        onMarkerOver={this.handleMarkerOver.bind(this)}
-        onMarkerOut={this.handleMarkerOut.bind(this)}
-        onMarkerClose={this.handleMarkerClose.bind(this)}
-        />
+      <div id="mymap">
+        <GoogleMap
+              bootstrapURLKeys={'AIzaSyBYss9BmsiHcvpyOvRbxx3qbzAGe-s_5Sg'}
+              center={this.props.center}
+              zoom={this.props.zoom}>
+              {Markers}
+          </GoogleMap>
       </div>
     );
   }

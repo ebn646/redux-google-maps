@@ -1,7 +1,7 @@
-.map-holder{
-
+@import "hint.scss";
+#mymap{
+  height:calc(100vh - 50px)
 }
-
 #map {
   div[style*="z-index: 106"] * {
     border-radius: 14px;
