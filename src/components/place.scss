@@ -1,3 +1,5 @@
+@import "./hint.scss";
+
 .col-sm-3{
     float:left;
 }
@@ -5,6 +7,10 @@
     float:left;
 }
 
-.hint__content{
-    font-size:70% !important;
+.hint--html .hint__content{
+  text-align: left;
+  &.selected{
+    visibility: visible;
+    opacity: 1;
+  }
 }

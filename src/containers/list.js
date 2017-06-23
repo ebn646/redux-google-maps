@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListItem from '../components/listitem';
 import * as actions from '../actions';
-require('../../style/list.scss');
+
+const style={
+  height:'100vh',
+  position: 'relative',
+}
 
 class List extends Component{
   constructor(props){
@@ -23,27 +27,27 @@ class List extends Component{
         {...this.props}
         key={index}
         index={index}
-        isActive={false}
         onMarkerClick={this.handleMarkerClick.bind(this)}
-        onMarkerOver={this.handleMarkerOver.bind(this)}
-        onMarkerOut={this.handleMarkerOut.bind(this)}
+        onItemOver={this.handleMarkerOver.bind(this)}
+        onItemOut={this.handleMarkerOut.bind(this)}
         data={venue}/>
       )
   }
   render(){
     const venues = this.props.venues || [];
       return(
-        <div style={{height:'100vh'}}>
+        <div style={style}>
           <p style={{padding:'10px 10px 10px 30px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>{this.props.location}</strong></p>
           <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"calc(100vh - 100px)", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
         </div>
       )
   }
 }
-
 function mapStateToProps(state){
   return{
+    venues: state.venues,
     activeMarkerIndex: state.activeMarkerIndex,
+    onMarkerClicked: state.onMarkerClicked,
     category: state.category,
     location:state.location,
   }

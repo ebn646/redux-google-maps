@@ -49,14 +49,18 @@ export default (state = [],action) => {
           if(marker.index == action.markerId){
             return {
               ...marker,
-              showInfo: true
+              showInfo: true,
+              isActive: false
             }
-          }else if(marker.showInfo && !marker.isActive){
+          }
+          else if(!marker.isActive){
             return {
               ...marker,
-              showInfo: false
+              showInfo: false,
+              isActive: false
             }
-          }else{
+          }
+          else{
             return marker;
           }
         });
@@ -67,7 +71,8 @@ export default (state = [],action) => {
             }
             return {
               ...marker,
-              showInfo: false
+              showInfo: false,
+              isActive: false
             }
           });
     default:

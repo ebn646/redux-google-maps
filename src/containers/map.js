@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
 import VenueInfoWindow from '../components/venueInfo';
-import MyGreatPlace from '../components/place.js';
+import MapMarker from '../components/mapMarker.js';
 import * as actionCreators from '../actions';
 require ('../../style/map.scss');
 
@@ -23,19 +23,19 @@ class Map extends Component{
       this.mapMoved();
     }
  }
-  handleMarkerClick(targetMarker){
-     var clicked = this.props.onMarkerClicked(targetMarker.index)
+  _onChildClick = (key, childProps) => {
+    const markerId = childProps.index;
+    const clicked = this.props.onMarkerClicked(markerId)
   }
-  handleMarkerOver(targetMarker){
-    console.log('markerOver')
-    var over = this.props.onMarkerOver(targetMarker.index)
+  _onChildMouseEnter = (key, childProps)=>{
+    const markerId = childProps.index;
+    const over = this.props.onMarkerOver(markerId)
   }
-  handleMarkerOut(targetMarker){
-    console.log(targetMarker.isActive)
-    if(!targetMarker.isActive){
-        var out = this.props.onMarkerOut(targetMarker.index)
-    }
+  _onChildMouseLeave = (key, childProps)=>{
+    const markerId = childProps.index;
+    const out = this.props.onMarkerOut(markerId)
   }
+
   handleMarkerClose(targetMarker){
     var clicked = this.props.onMarkerClicked(-1);
   }
@@ -60,23 +60,28 @@ class Map extends Component{
   componentWillReceiveProps(nextProps){
     //console.log(this.props.activeMarkerIndex)
   }
-  renderMarker(marker,index){
-      return <MyGreatPlace
+  renderMarker(marker,text,index){
+      return <MapMarker
         data={marker}
         key={index}
+        index={index}
         lat={marker.venue.location.lat}
         lng={marker.venue.location.lng}
-        text={index}
+        text={text}
       />
   }
   render() {
-    const Markers = this.props.venues.map((marker,index) => this.renderMarker(marker,String(index+1)));
+    const Markers = this.props.venues.map((marker,index) => this.renderMarker(marker,String(index+1),index));
     return (
       <div id="mymap">
         <GoogleMap
               bootstrapURLKeys={'AIzaSyBYss9BmsiHcvpyOvRbxx3qbzAGe-s_5Sg'}
               center={this.props.center}
-              zoom={this.props.zoom}>
+              zoom={this.props.zoom}
+              onChildClick={this._onChildClick}
+              onChildMouseEnter={this._onChildMouseEnter}
+              onChildMouseLeave={this._onChildMouseLeave}
+              >
               {Markers}
           </GoogleMap>
       </div>
@@ -86,6 +91,7 @@ class Map extends Component{
 function mapStateToProps(state){
   return {
     venues: state.venues,
+    onMarkerClicked: state.onMarkerClicked,
     activeMarkerIndex: state.activeMarkerIndex,
     category: state.category,
     mapMoved: state.mapMoved,

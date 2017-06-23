@@ -18,7 +18,6 @@ const greatPlaceStyle = {
   padding: 4,
   cursor: 'pointer',
   zIndex:`1`,
-  transition: 'all .2s ease-in-out'
 };
 
 const greatPlaceStyleHover = {
@@ -26,7 +25,6 @@ const greatPlaceStyleHover = {
   border: '5px solid #3f51b5',
   color: '#f44336',
   zIndex:`30`,
-  transform: `scale(1.10)`,
 };
 
 export {greatPlaceStyle, greatPlaceStyleHover, K_SIZE};

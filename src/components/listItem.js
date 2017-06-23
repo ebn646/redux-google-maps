@@ -1,34 +1,42 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router';
 
+const style = {
+  cursor:'pointer',
+  listStyleType:'none',
+  borderBottom:'1px solid gray',
+  padding:'10px',
+  overflow:'hidden',
+  background: '#f5f5f5'
+}
+
+const styleHover={
+  ...style,
+  background: '#f7ecd6'
+}
 export default class ListItem extends Component{
-  constructor(props){
+
+constructor(props){
       super(props)
       this.state={'isSelected':''}
   }
   onItemOver(){
-    this.props.onMarkerOver(this.props.index);
+    this.props.onItemOver(this.props.index);
   }
   onItemOut(){
-    this.props.onMarkerOut();
+    if(!this.state.selected)this.props.onItemOut(this.props.index);
   }
-  componentWillReceiveProps(nextProps){
-    if(nextProps.activeMarkerIndex == this.props.index){
-        this.setState({"isSelected":"selected"});
-    }
-    if(nextProps.activeMarkerIndex == -1
-        || nextProps.activeMarkerIndex != this.props.index){
-        this.setState({"isSelected":""});
+
+  getMarkerStyle(){
+    if(this.props.data.showInfo){
+      return styleHover;
+    }else{
+      return style
     }
   }
   render(){
-    const style = {
-      cursor:'pointer',
-      listStyleType:'none',
-      borderBottom:'1px solid gray',
-      padding:'10px',
-      overflow:'hidden'
-    }
+
+    const mstyle = this.getMarkerStyle();
 
     return(
         <li
@@ -36,19 +44,18 @@ export default class ListItem extends Component{
           onMouseEnter={this.onItemOver.bind(this)}
           onMouseLeave={this.onItemOut.bind(this)}
           className={this.state.isSelected}
-          style={style}>
-          <div className="col-sm-3">
-            <img src={this.props.data.venue.featuredPhotos.items[0].prefix +'100x100' + this.props.data.venue.featuredPhotos.items[0].suffix} />
+          style={mstyle}>
+          <div className="col-sm-1">
+            <span>{this.props.index + 1}</span>
           </div>
-          <div className="col-sm-8">
-              <h6><span>{this.props.index + 1}.</span> <span>{this.props.data.venue.name}</span></h6>
+          <div className="col-sm-10">
+              <h6><span>{this.props.data.venue.name}</span></h6>
             <small>{this.props.data.venue.categories[0].name}</small>
             <p>
               {this.props.data.venue.location.address}
               {this.props.data.venue.location.city}, {this.props.data.venue.location.state}
           </p>
           </div>
-          <div className="col-xs-1 rating">{this.props.data.venue.rating}</div>
         </li>
     )
   }
