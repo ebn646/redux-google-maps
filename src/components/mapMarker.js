@@ -33,23 +33,18 @@ export default class MapMarker extends Component {
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.data.isActive){
-      this.setSelected()
-    }else{
-      this.setUnSelected();
-    }
-  }
-  setSelected(){
-    this.setState({
-      selected: 'selected'
-    })
-  }
-  setUnSelected(){
-    if(!this.props.isActive){
       this.setState({
-        selected: ''
+        selected: 'selected'
       })
+    }else{
+      if(!this.props.isActive){
+        this.setState({
+          selected: ''
+        })
+      }
     }
   }
+
   render() {
     const style = this.getMarkerStyle();
 

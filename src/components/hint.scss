@@ -50,7 +50,7 @@
 
 [data-hint]:hover:before, [data-hint]:hover:after {
   visibility: visible;
-  //opacity: 1;
+  opacity: 1;
 }
 
 [data-hint]:hover:before, [data-hint]:hover:after {
@@ -564,7 +564,7 @@
  *
  */
 .hint--always:after, .hint--always:before {
-  //opacity: 1;
+  opacity: 1;
   visibility: visible;
 }
 
@@ -656,7 +656,7 @@
  */
 .hint--html.hint:after {
   display: none;
-  //opacity: 0;
+  opacity: 0;
 }
 
 .hint__content {
@@ -699,7 +699,7 @@
 
 .hint--html:hover:before, .hint--html:hover:after {
   visibility: visible;
-  //opacity: 1;
+  opacity: 1;
 }
 
 .hint--html:hover:before, .hint--html:hover:after {
@@ -735,7 +735,7 @@
 .hint--html:hover .hint__content,
 .hint--html:focus .hint__content {
   visibility: visible;
-  //opacity: 1;
+  opacity: 1;
 }
 
 .hint--html:hover .hint__content {
@@ -777,7 +777,7 @@
   left: 0;
   height: 12px;
   width: 100%;
-  //opacity: 0;
+  opacity: 0;
   background-color: red;
 }
 
@@ -952,7 +952,7 @@
   left: 0;
   height: 12px;
   width: 100%;
-  //opacity: 0;
+  opacity: 0;
   background-color: red;
 }
 
@@ -986,7 +986,7 @@
   top: 0;
   height: 100%;
   width: 12px;
-  //opacity: 0;
+  opacity: 0;
   background-color: red;
 }
 

@@ -2,10 +2,12 @@ import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
-import VenueInfoWindow from '../components/venueInfo';
 import MapMarker from '../components/mapMarker.js';
 import * as actionCreators from '../actions';
-require ('../../style/map.scss');
+
+const mapstyle={
+
+}
 
 class Map extends Component{
   constructor(props){
@@ -35,7 +37,14 @@ class Map extends Component{
     const markerId = childProps.index;
     const out = this.props.onMarkerOut(markerId)
   }
-
+  _onBoundsChange = (center, zoom, bounds, marginBounds) => {
+    // if (this.props.onBoundsChange) {
+    //   this.props.onBoundsChange({center, zoom, bounds, marginBounds});
+    // } else {
+    //   this.props.onCenterChange(center);
+    //   this.props.onZoomChange(zoom);
+    // }
+  }
   handleMarkerClose(targetMarker){
     var clicked = this.props.onMarkerClicked(-1);
   }
@@ -81,6 +90,7 @@ class Map extends Component{
               onChildClick={this._onChildClick}
               onChildMouseEnter={this._onChildMouseEnter}
               onChildMouseLeave={this._onChildMouseLeave}
+              onBoundsChange={this._onBoundsChange}
               >
               {Markers}
           </GoogleMap>

@@ -1,3 +1,5 @@
+@import "./hint.scss";
+
 body{
   overflow-x: hidden;
 }
@@ -33,6 +35,22 @@ footer{
   padding:10px;
   background: #ccc;
 }
+
+.col-sm-3{
+    float:left;
+}
+.col-sm-8{
+    float:left;
+}
+
+.hint--html .hint__content{
+  text-align: left;
+  &.selected{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 
 .App-logo{
   height:38px;
