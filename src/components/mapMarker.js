@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-//import shouldPureComponentUpdate from 'react-pure-render/function';
-
 import {greatPlaceStyle, greatPlaceStyleHover} from './place_styles.js';
 require('./place.scss');
 
@@ -17,7 +15,6 @@ export default class MapMarker extends Component {
 
   };
 
-  //shouldComponentUpdate = shouldPureComponentUpdate;
   constructor(props){
     super(props);
     this.state=({
@@ -50,7 +47,7 @@ export default class MapMarker extends Component {
 
     return (
       <div
-        className={"hint hint--html hint--info hint--top "}
+        className={"hint hint--html hint--info hint--top"}
         style={style}
         >
         <div>{this.props.text}</div>

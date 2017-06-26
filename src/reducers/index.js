@@ -5,7 +5,6 @@ import getCityReducer from './getCityReducer';
 import getLatLngReducer from './getLatLngReducer';
 import activeMarkerIndexReducer from './activeMarkerIndexReducer';
 import windowResizeReducer from './windowResizeReducer';
-import { Map } from 'immutable';
 
 const rootReducer = combineReducers({
   activeMarkerIndex: activeMarkerIndexReducer,

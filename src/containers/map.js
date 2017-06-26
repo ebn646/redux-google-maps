@@ -57,15 +57,6 @@ class Map extends Component{
     console.log('the map has resized')
     //this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
-  mapLoaded(map){
-    if(this.state.map != null){
-      return;
-    }else{
-      this.setState({
-        map: map
-      })
-    }
-  }
   componentWillReceiveProps(nextProps){
     //console.log(this.props.activeMarkerIndex)
   }

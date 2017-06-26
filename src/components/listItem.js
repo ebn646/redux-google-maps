@@ -2,6 +2,8 @@ import React,{ Component } from 'react';
 import { Link } from 'react-router';
 import {greatPlaceStyle, greatPlaceStyleHover} from './place_styles.js';
 
+const K_SIZE = 40;
+
 const style = {
   cursor:'pointer',
   listStyleType:'none',
@@ -15,7 +17,6 @@ const styleHover={
   ...style,
   background: '#f7ecd6'
 }
-const K_SIZE = 40;
 
 const dotStyle = {
   ...greatPlaceStyle,
