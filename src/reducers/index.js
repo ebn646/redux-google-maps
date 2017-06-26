@@ -1,18 +1,14 @@
 import { combineReducers } from 'redux';
-import categoryReducer from './categoryChangeReducer';
-import fetchMarkersReducer from './fetchMarkersReducer';
-import getCityReducer from './getCityReducer';
-import getLatLngReducer from './getLatLngReducer';
-import activeMarkerIndexReducer from './activeMarkerIndexReducer';
-import windowResizeReducer from './windowResizeReducer';
+import category from './categoryChangeReducer';
+import venues from './getLocationsReducer';
+import city from './getCityReducer';
+import latlng from './getLatLngReducer';
 
 const rootReducer = combineReducers({
-  activeMarkerIndex: activeMarkerIndexReducer,
-  venues: fetchMarkersReducer,
-  category: categoryReducer,
-  location: getCityReducer,
-  latlng: getLatLngReducer,
-  mapCenter: windowResizeReducer
+  venues,
+  category,
+  city,
+  latlng,
 });
 
 export default rootReducer;

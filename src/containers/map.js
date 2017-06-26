@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
-import MapMarker from '../components/mapMarker.js';
+import MapMarker from '../components/mapMarker';
 import * as actionCreators from '../actions';
 
 const mapstyle={
@@ -14,7 +14,7 @@ class Map extends Component{
     super(props)
     this.state={map:null,markers:[]}
   }
-  componentDidMount(){
+  componentDidMount = () => {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
@@ -45,22 +45,22 @@ class Map extends Component{
     //   this.props.onZoomChange(zoom);
     // }
   }
-  handleMarkerClose(targetMarker){
+  handleMarkerClose = (targetMarker) => {
     var clicked = this.props.onMarkerClicked(-1);
   }
-  mapMoved(){
+  mapMoved = () => {
     console.log('the map has moved',this.state.map.controlledPropUpdaterMap)
     //this.state.map.center(this.state.map,this.state.map.getCenter())
     //this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
-  onResize(){
+  onResize = () => {
     console.log('the map has resized')
     //this.props.onMapMoved(this.props.category,this.state.map.getCenter())
   }
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps = (nextProps) => {
     //console.log(this.props.activeMarkerIndex)
   }
-  renderMarker(marker,text,index){
+  renderMarker = (marker,text,index) => {
       return <MapMarker
         data={marker}
         key={index}
@@ -70,7 +70,7 @@ class Map extends Component{
         text={text}
       />
   }
-  render() {
+  render = ()=> {
     const Markers = this.props.venues.map((marker,index) => this.renderMarker(marker,String(index+1),index));
     return (
       <div id="mymap">
@@ -81,22 +81,18 @@ class Map extends Component{
               onChildClick={this._onChildClick}
               onChildMouseEnter={this._onChildMouseEnter}
               onChildMouseLeave={this._onChildMouseLeave}
-              onBoundsChange={this._onBoundsChange}
-              >
+              onBoundsChange={this._onBoundsChange}>
               {Markers}
           </GoogleMap>
       </div>
     );
   }
 }
-function mapStateToProps(state){
+function mapStateToProps({venues,onMarkerClicked,latlng}){
   return {
-    venues: state.venues,
-    onMarkerClicked: state.onMarkerClicked,
-    activeMarkerIndex: state.activeMarkerIndex,
-    category: state.category,
-    mapMoved: state.mapMoved,
-    latlng: state.latlng
+    venues,
+    onMarkerClicked,
+    latlng
   }
 }
 

@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
-import DropDown from '../containers/dropdown-list'
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from '../helpers';
-require('../../style/header.scss');
+import DropDown from '../../containers/dropdown-list'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from '../../helpers';
+require('./header.scss');
 
 class Header extends Component{
   constructor(props){

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {greatPlaceStyle, greatPlaceStyleHover} from './place_styles.js';
+import {greatPlaceStyle, greatPlaceStyleHover} from '../place_styles.js';
 require('./place.scss');
 
 export default class MapMarker extends Component {

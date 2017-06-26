@@ -1,7 +1,7 @@
 import { CATEGORY_CHANGE } from '../actions/types';
 
 var initialState = {
-	category: 'food',
+	category: 'Food',
 }
 
 export default function(state = initialState.category, action){

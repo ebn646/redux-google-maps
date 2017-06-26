@@ -27,7 +27,7 @@ export function onMarkerOut(markerId){
   }
 }
 
-export function onFetchLocations(category){
+export function onGetLocations(category){
     if(category == undefined)category = 'food';
     const query = category;
     const url = ROOT_URL
@@ -50,7 +50,6 @@ export function onFetchLocations(category){
     };
 }
 export function onZipCodeChanged(obj){
-  //if(category == undefined)category = 'food';
   const query = 'food';
   const url = ROOT_URL
   +'?v=20131124'

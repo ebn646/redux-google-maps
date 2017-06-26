@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router';
-import {greatPlaceStyle, greatPlaceStyleHover} from './place_styles.js';
+import {greatPlaceStyle, greatPlaceStyleHover} from '../place_styles.js';
 
 const K_SIZE = 40;
 

@@ -22,11 +22,11 @@ class App extends Component {
     }
   }
   componentWillMount(){
-    this.props.onFetchLocations();
+    this.props.onGetLocations();
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.category !== this.props.category){
-      this.props.onFetchLocations(nextProps.category);
+      this.props.onGetLocations(nextProps.category);
     }
     if(nextProps.latlng !== this.props.latlng){
       this.setState({
@@ -64,11 +64,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps({venues,category,latlng}){
    return{
-     venues: state.venues,
-     category: state.category,
-     latlng: state.latlng
+     venues,
+     category,
+     latlng
    }
 }
 

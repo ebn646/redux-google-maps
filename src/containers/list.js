@@ -37,19 +37,18 @@ class List extends Component{
     const venues = this.props.venues || [];
       return(
         <div style={style}>
-          <p style={{padding:'10px 10px 10px 30px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>{this.props.location}</strong></p>
+          <p style={{padding:'10px 10px 10px 30px'}}>Suggestions for <strong>{this.props.category}</strong> near <strong>{this.props.city}</strong></p>
           <ul className="col-md-4 list-group venue-list" style={{width:"100%",height:"calc(100vh - 100px)", overflowY:"scroll"}}>{venues.map((venue,index)=>this.renderItem(venue,index))}</ul>
         </div>
       )
   }
 }
-function mapStateToProps(state){
+function mapStateToProps({venues,onMarkerClicked,category,city}){
   return{
-    venues: state.venues,
-    activeMarkerIndex: state.activeMarkerIndex,
-    onMarkerClicked: state.onMarkerClicked,
-    category: state.category,
-    location:state.location,
+    venues,
+    onMarkerClicked,
+    category,
+    city,
   }
 }
 
