@@ -1,4 +1,4 @@
-import { FETCH_LOCATIONS,CATEGORY_CHANGE,MARKER_CLICK,MARKER_OVER,MARKER_OUT,LOCATION_CHANGE } from '../actions/types';
+import { FETCH_LOCATIONS, CATEGORY_CHANGE, MARKER_CLICK, MARKER_OVER, MARKER_OUT,LOCATION_CHANGE } from '../actions/types';
 
 export default (state = [],action) => {
   switch(action.type){
@@ -70,6 +70,7 @@ export default (state = [],action) => {
             return {
               ...marker,
               showInfo: false,
+              isActive: false
             }
           });
     default:
