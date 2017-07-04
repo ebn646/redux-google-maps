@@ -37,6 +37,12 @@ const dotStyle = {
   zIndex:`1`,
 };
 
+const dotStyleHover={
+  ...dotStyle,
+  border: '5px solid #3f51b5',
+
+}
+
 export default class ListItem extends Component{
 
 constructor(props){
@@ -52,9 +58,15 @@ constructor(props){
 
   getMarkerStyle(){
     if(this.props.data.showInfo){
-      return styleHover;
+      return {
+        item: styleHover,
+        dot: dotStyleHover
+      };
     }else{
-      return style
+      return {
+        item: style,
+        dot: dotStyle
+      }
     }
   }
   render(){
@@ -67,9 +79,9 @@ constructor(props){
           onMouseEnter={this.onItemOver.bind(this)}
           onMouseLeave={this.onItemOut.bind(this)}
           className={this.state.isSelected}
-          style={mstyle}>
+          style={mstyle.item}>
           <div className="col-sm-2">
-            <span style={dotStyle}>{this.props.index + 1}</span>
+            <span style={mstyle.dot}>{this.props.index + 1}</span>
           </div>
           <div className="col-sm-10">
               <h6><span>{this.props.data.venue.name}</span></h6>

@@ -47,15 +47,13 @@ export default (state = [],action) => {
           if(marker.index == action.markerId){
             return {
               ...marker,
-              showInfo: true,
-              isActive: false
+              showInfo: true
             }
           }
           else if(!marker.isActive){
             return {
               ...marker,
-              showInfo: false,
-              isActive: false
+              showInfo: false
             }
           }
           else{

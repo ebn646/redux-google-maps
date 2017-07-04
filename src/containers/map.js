@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
+import { fitBounds } from 'google-map-react/utils';
 import MapMarker from '../components/mapMarker';
 import * as actionCreators from '../actions';
 
@@ -17,6 +18,18 @@ class Map extends Component{
   componentDidMount = () => {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
+  }
+  componentWillUpdate(){
+    var map = this.refs.googleMap.map_;
+    if(map){
+    var maps = this.refs.googleMap.maps_;
+    var bounds = new maps.LatLngBounds();
+     this.props.venues.forEach((venue) => {
+       var latLng = new maps.LatLng(venue.venue.location.lat, venue.venue.location.lng);
+       bounds.extend(latLng);
+     });
+     map.fitBounds(bounds);
+    }
   }
   updateDimensions() {
     if(this.state.map == null){
@@ -38,12 +51,7 @@ class Map extends Component{
     const out = this.props.onMarkerOut(markerId)
   }
   _onBoundsChange = (center, zoom, bounds, marginBounds) => {
-    // if (this.props.onBoundsChange) {
-    //   this.props.onBoundsChange({center, zoom, bounds, marginBounds});
-    // } else {
-    //   this.props.onCenterChange(center);
-    //   this.props.onZoomChange(zoom);
-    // }
+    console.log('_onBoundsChange')
   }
   handleMarkerClose = (targetMarker) => {
     var clicked = this.props.onMarkerClicked(-1);
@@ -81,7 +89,8 @@ class Map extends Component{
               onChildClick={this._onChildClick}
               onChildMouseEnter={this._onChildMouseEnter}
               onChildMouseLeave={this._onChildMouseLeave}
-              onBoundsChange={this._onBoundsChange}>
+              onBoundsChange={this._onBoundsChange}
+              ref="googleMap">
               {Markers}
           </GoogleMap>
       </div>
