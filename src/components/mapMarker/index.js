@@ -21,6 +21,7 @@ export default class MapMarker extends Component {
       selected: ''
     })
   }
+  
   getMarkerStyle(){
     if(this.props.data.showInfo || this.props.$hover || this.props.data.isActive || this.state.selected){
         return greatPlaceStyleHover;
@@ -28,6 +29,7 @@ export default class MapMarker extends Component {
         return greatPlaceStyle;
     }
   }
+
   componentWillReceiveProps(nextProps){
     if(nextProps.data.isActive){
       this.setState({
@@ -42,22 +44,28 @@ export default class MapMarker extends Component {
     }
   }
 
+  _onCloseClick = () => {
+    if (this.props.onCloseClick) {
+      this.props.onCloseClick();
+    }
+  }
+
   render() {
     const style = this.getMarkerStyle();
 
     return (
       <div
-        className={"hint hint--html hint--info hint--top"}
-        style={style}
-        >
+        className={"hint hint--html hint--info hint--top " + this.state.selected}
+        style={style}>
         <div>{this.props.text}</div>
-        <div style={{width: '350px'}} className={"hint__content " + this.state.selected}>
-            <div className="col-sm-8">
+        <div style={{width: '300px'}} className={"hint__content"}>
+            <div className="col-sm-12">
               <h6><span>{this.props.data.venue.name}</span></h6>
               {this.props.data.venue.categories[0].name}
               {this.props.data.venue.location.address}
              <span>, {this.props.data.venue.location.city}</span>
             </div>
+            <div className="map-marker-hint__close-button" onClick={this._onCloseClick.bind(this)}>close</div>
         </div>
       </div>
     );

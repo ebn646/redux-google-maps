@@ -1,9 +1,19 @@
-import { FETCH_LOCATIONS, CATEGORY_CHANGE, MARKER_CLICK, MARKER_OVER, MARKER_OUT,LOCATION_CHANGE } from '../actions/types';
+import { FETCH_LOCATIONS, CATEGORY_CHANGE, MARKER_CLICK, MARKER_OVER, MARKER_OUT,ITEMS_FETCH_DATA_SUCCESS,ITEMS_IS_LOADING } from '../actions/types';
 
-export default (state = [],action) => {
+export function itemsIsLoading(state = false, action) {
+    switch (action.type) {
+        case ITEMS_IS_LOADING:
+            return action.isLoading;
+
+        default:
+            return state;
+    }
+}
+
+export function venues(state = [],action){
   switch(action.type){
-    case FETCH_LOCATIONS:
-      var markers = [...action.payload.data.response.groups[0].items];
+    case ITEMS_FETCH_DATA_SUCCESS:
+      var markers = action.venues.data.response.groups[0].items;
       return markers.map((marker,index)=>{
         return{
           ...marker,
@@ -12,18 +22,6 @@ export default (state = [],action) => {
           isActive:false
         }
       });
-      case LOCATION_CHANGE:
-        var markers = [...action.payload.data.response.groups[0].items];
-        return markers.map((marker,index)=>{
-          return{
-            ...marker,
-            showInfo:false,
-            index:index,
-            isActive:false
-          }
-        });
-    case CATEGORY_CHANGE:
-      return[...action.payload.data.response.groups[0].items];
     case MARKER_CLICK:
       return state.map(marker => {
         if(marker.index == action.markerId){

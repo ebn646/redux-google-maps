@@ -16,8 +16,8 @@ class Map extends Component{
     this.state={map:null,markers:[]}
   }
   componentDidMount = () => {
-    this.updateDimensions();
-    window.addEventListener("resize", this.updateDimensions.bind(this));
+    //this.updateDimensions();
+    //window.addEventListener("resize", this.updateDimensions.bind(this));
   }
   componentWillUpdate(){
     var map = this.refs.googleMap.map_;
@@ -31,13 +31,6 @@ class Map extends Component{
      map.fitBounds(bounds);
     }
   }
-  updateDimensions() {
-    if(this.state.map == null){
-      return
-    }else{
-      this.mapMoved();
-    }
- }
   _onChildClick = (key, childProps) => {
     const markerId = childProps.index;
     const clicked = this.props.onMarkerClicked(markerId)
@@ -51,7 +44,12 @@ class Map extends Component{
     const out = this.props.onMarkerOut(markerId)
   }
   _onBoundsChange = (center, zoom, bounds, marginBounds) => {
-    console.log('_onBoundsChange')
+    //console.log('_onBoundsChange')
+  }
+  _onBaloonCloseClick = ()=>{
+    if (this.props.onChildClick) {
+      this.props.onChildClick(-1);
+    }
   }
   handleMarkerClose = (targetMarker) => {
     var clicked = this.props.onMarkerClicked(-1);
@@ -76,6 +74,7 @@ class Map extends Component{
         lat={marker.venue.location.lat}
         lng={marker.venue.location.lng}
         text={text}
+        onCloseClick={this._onBaloonCloseClick}
       />
   }
   render = ()=> {
@@ -89,7 +88,7 @@ class Map extends Component{
               onChildClick={this._onChildClick}
               onChildMouseEnter={this._onChildMouseEnter}
               onChildMouseLeave={this._onChildMouseLeave}
-              onBoundsChange={this._onBoundsChange}
+              onChange={this._onBoundsChange}
               ref="googleMap">
               {Markers}
           </GoogleMap>

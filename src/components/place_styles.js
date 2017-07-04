@@ -18,12 +18,14 @@ const greatPlaceStyle = {
   padding: 4,
   cursor: 'pointer',
   zIndex:`1`,
+  transition:'all .2s ease-in-out',
 };
 
 const greatPlaceStyleHover = {
   ...greatPlaceStyle,
   border: '5px solid #3f51b5',
   color: '#f44336',
+  transform:'scale(1.15)',
   zIndex:`30`,
 };
 

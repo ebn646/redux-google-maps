@@ -8,8 +8,7 @@ class DropDown extends Component{
   }
   onCategoryClicked(e){
     var category = e.target.getAttribute('data-value');
-    console.log('activeMarkerIndex = ',this.props.activeMarkerIndex)
-    this.props.onCategoryChange(category,null);
+    this.props.onChangeCatetory(category);
   }
 
   render(){

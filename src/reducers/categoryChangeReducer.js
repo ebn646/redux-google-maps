@@ -7,11 +7,7 @@ var initialState = {
 export default function(state = initialState.category, action){
   switch (action.type) {
       case CATEGORY_CHANGE:
-    	return {
-				...state,
-				food:action.payload.data.response.query,
-				location:action.payload.data.response.query
-			};
+    	return action.category;
     default:
       return state;
   }

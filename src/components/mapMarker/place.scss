@@ -7,10 +7,30 @@
     float:left;
 }
 
-.hint--html .hint__content{
-  text-align: left;
+.hint--top{
+  &:after{
+    display:none;
+  }
+  &:before{
+    display:none;
+  }
+
+  .map-marker-hint__close-button{
+    display: none;
+    text-decoration: underline;
+    z-index: 100;
+  }
+
   &.selected{
-    visibility: visible;
-    opacity: 1;
+    .hint__content{
+      text-align: left;
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(-8px);
+    }
+
+    .map-marker-hint__close-button{
+      //display: block;
+    }
   }
 }

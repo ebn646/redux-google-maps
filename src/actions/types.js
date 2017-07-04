@@ -7,3 +7,5 @@ export const GET_CITY = 'get_city';
 export const LOCATION_CHANGE = 'zipcode_changed';
 export const LATLNG_CHANGE = 'latlng_changed';
 export const WINDOW_RESIZE = 'window_resize';
+export const ITEMS_IS_LOADING = 'venues_is_loading';
+export const ITEMS_FETCH_DATA_SUCCESS = 'items_fetch_data_success';

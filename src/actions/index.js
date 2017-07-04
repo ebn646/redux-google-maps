@@ -1,8 +1,8 @@
 import React from 'react';
-import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED,LOCATION_CHANGE,LATLNG_CHANGE,WINDOW_RESIZE } from './types';
+import { MARKER_CLICK,MARKER_OVER,MARKER_OUT,FETCH_LOCATIONS,CATEGORY_CHANGE,MAP_MOVED,LOCATION_CHANGE,LATLNG_CHANGE,ITEMS_IS_LOADING,ITEMS_FETCH_DATA_SUCCESS } from './types';
 import axios from 'axios';
 
-const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/';
+const ROOT_URL = 'https://api.foursquare.com/v2/venues/explore/?v=20131124';
 const id = 'GBB4YOPWUQFP45PQ2REU2PW52QWRVQPOZ3UO4FFKVZQX0IYQ';
 const secret = 'K04HZR3IKONTN2ZJBJ5RMREPSSJYTYYHGPC0PP5EIHJPPLNM'
 
@@ -27,13 +27,28 @@ export function onMarkerOut(markerId){
   }
 }
 
-export function onGetLocations(category){
+export function itemsIsLoading(bool) {
+    return {
+        type: ITEMS_IS_LOADING,
+        isLoading: bool
+    };
+}
+
+export function itemsFetchDataSuccess(type,venues){
+  return{
+    type: type,
+    venues
+  }
+}
+
+export function onGetLocations(category,zip){
     if(category == undefined)category = 'food';
+    if(zip == undefined)var zip = {lat:'40.722938',lng:'-74.007821'};
+    const request = axios;
     const query = category;
     const url = ROOT_URL
-    +'?v=20131124'
     +'&ll='
-    +'40.722938,-74.007821'
+    +zip.lat.toString()+','+zip.lng.toString()
     +'&query='
     +query
     +'&client_id='
@@ -42,31 +57,19 @@ export function onGetLocations(category){
     +secret
     +'&venuePhotos=1';
 
-    const request = axios.get(url);
-
-    return{
-      type: FETCH_LOCATIONS,
-      payload: request
-    };
+     return (dispatch) => {
+       dispatch(itemsIsLoading(true));
+       axios.get(url)
+       .then((response)=>{
+         dispatch(itemsFetchDataSuccess(ITEMS_FETCH_DATA_SUCCESS,response))
+       });
+     }
 }
-export function onZipCodeChanged(obj){
-  const query = 'food';
-  const url = ROOT_URL
-  +'?v=20131124'
-  +'&ll='
-  +obj.lat.toString()+','+obj.lng.toString()
-  +'&query='
-  +query
-  +'&client_id='
-  +id
-  +'&client_secret='
-  +secret
-  +'&venuePhotos=1';
-  const request = axios.get(url);
 
+export function onChangeCatetory(category){
   return{
-    type: LOCATION_CHANGE,
-    payload: request,
+    type: CATEGORY_CHANGE,
+    category
   }
 }
 
@@ -74,30 +77,5 @@ export function onLatLngChange(obj){
   return {
     type: LATLNG_CHANGE,
     obj
-  }
-}
-
-export function onCategoryChange(category){
-  console.log('onCategoryChange',1)
-  if(category == undefined)category = 'food';
-  const query = category;
-  const url = ROOT_URL
-  +'?v=20131124'
-  +'&ll='
-  +'30.26715,-97.74306'
-  +'&query='
-  +query
-  +'&client_id='
-  +id
-  +'&client_secret='
-  +secret
-  +'&venuePhotos=1';
-  console.log('onCategoryChange',2)
-
-  const request = axios.get(url);
-
-  return{
-    type: CATEGORY_CHANGE,
-    payload: request,
   }
 }

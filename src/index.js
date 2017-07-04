@@ -5,13 +5,14 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxPromise from 'redux-promise';
 import App from './containers/app';
 import reducers from './reducers';
+import thunk from 'redux-thunk';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk,ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers,enhancers)}>

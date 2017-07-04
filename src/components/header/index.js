@@ -26,7 +26,7 @@ class Header extends Component{
       .then(({ lat, lng }) => {
         console.log('Success Yay', { lat, lng },this.props);
         this.props.onLatLngChange({ lat, lng });
-        this.props.onZipCodeChanged({ lat, lng });
+        this.props.onGetLocations(null,{ lat, lng });
       })
       .catch((error) => {
         console.log('Oh no!', error)
@@ -80,7 +80,7 @@ class Header extends Component{
           <div className="col-md-1">
               <h4 style={{display:'inline-block'}}><img src="images/foursquare.png"/></h4>
           </div>
-          <div className="col-md-4 col-left" style={{textAlign:'left'}}>
+          <div className="col-sm-4 col-left" style={{textAlign:'left'}}>
             <PlacesAutocomplete
               onSelect={this.handleSelect}
               autocompleteItem={AutocompleteItem}
@@ -88,6 +88,7 @@ class Header extends Component{
               classNames={cssClasses}
               inputProps={inputProps}
             />
+          <DropDown {...this.props} />
             {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
             {!this.state.loading && this.state.geocodeResults ?
               <div className='geocoding-results'>{this.state.geocodeResults}</div> : null}
