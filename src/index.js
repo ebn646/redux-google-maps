@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxPromise from 'redux-promise';
 import App from './containers/app';
 import reducers from './reducers';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -14,6 +15,9 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers,enhancers)}>
-    <App />
+    <Router history={browserHistory}>
+    <Route path="/" component={App}>
+    </Route>
+    </Router>
   </Provider>
   , document.querySelector('.app'));
