@@ -3,8 +3,8 @@ import { FETCH_LOCATIONS, CATEGORY_CHANGE, MARKER_CLICK, MARKER_OVER, MARKER_OUT
 export function itemsIsLoading(state = false, action) {
     switch (action.type) {
         case ITEMS_IS_LOADING:
+        console.log('map is loading')
             return action.isLoading;
-
         default:
             return state;
     }
@@ -65,8 +65,7 @@ export function venues(state = [],action){
             }
             return {
               ...marker,
-              showInfo: false,
-              isActive: false
+              showInfo: false
             }
           });
     default:

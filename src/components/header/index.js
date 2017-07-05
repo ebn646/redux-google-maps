@@ -80,15 +80,16 @@ class Header extends Component{
           <div className="col-md-1">
               <h4 style={{display:'inline-block'}}><img src="images/foursquare.png"/></h4>
           </div>
-          <div className="col-sm-4 col-left" style={{textAlign:'left'}}>
+          <div  className="col-sm-2 col-left">
+            <DropDown {...this.props} />
+          </div>
+          <div className="col-sm-2 col-left" style={{textAlign:'left'}}>
             <PlacesAutocomplete
               onSelect={this.handleSelect}
               autocompleteItem={AutocompleteItem}
               onEnterKeyDown={this.handleSelect}
               classNames={cssClasses}
-              inputProps={inputProps}
-            />
-          <DropDown {...this.props} />
+              inputProps={inputProps}/>
             {this.state.loading ? <div><i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" /></div> : null}
             {!this.state.loading && this.state.geocodeResults ?
               <div className='geocoding-results'>{this.state.geocodeResults}</div> : null}

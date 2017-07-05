@@ -96,11 +96,10 @@ class Map extends Component{
     );
   }
 }
-function mapStateToProps({venues,onMarkerClicked,latlng}){
+function mapStateToProps({venues,onMarkerClicked}){
   return {
     venues,
-    onMarkerClicked,
-    latlng
+    onMarkerClicked
   }
 }
 
